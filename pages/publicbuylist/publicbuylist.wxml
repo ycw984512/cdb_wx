@@ -1,0 +1,88 @@
+<wxs src="../../common/num2.wxs" module="m3" />
+<view class='coupon_name'>
+  <view>卡券名称 : </view>
+  <input placeholder='请输入名称' placeholder-class='holderClass' bindinput='nameTap' value='{{couponName}}'></input>
+</view>
+
+<view class='coupon_name'>
+  <view>抢购价 (元) : </view>
+  <input placeholder='请输入抢购价金额' type='digit' placeholder-class='holderClass' value='{{couponBuyPrice}}' bindinput='buyPriceTap'></input>
+</view>
+
+<view class='coupon_name'>
+  <view>原价 (元) : </view>
+  <input placeholder='请输入原价金额' type='digit' placeholder-class='holderClass' value='{{couponPrice}}' bindinput='originPriceTap'></input>
+</view>
+
+<view class='coupon_name'>
+  <view>有效日期</view>
+  <view style='display:flex;justify-content:space-around;flex:1;'>
+
+    <picker mode="date" value="{{startDate}}" start="2019-01-01" end="2030-12-31" bindchange="bindStartDateChange">
+      <view class="picker">
+        <text style='color:rgba(205,205,205,1);' wx:if="{{startDate==''}}">请输入开始日期</text>
+        <text style='color:rgba(205,205,205,1);'>{{startDate}}</text>
+      </view>
+    </picker>
+    <text>至</text>
+    <picker mode="date" value="{{endDate}}" start="2019-01-01" end="2030-12-31" bindchange="bindEndDateChange">
+      <view class="picker">
+        <text style='color:rgba(205,205,205,1);' wx:if="{{endDate==''}}">请输入开始日期</text>
+        <text style='color:rgba(205,205,205,1);'>  {{endDate}}</text>
+      </view>
+    </picker>
+  </view>
+</view>
+
+<view class='coupon_name' style='justify-content:space-between'>
+  <view>产品图片</view>
+  <image src='/static/images/upload.png' style='width:99rpx;height:99rpx' wx:if="{{productImg==''}}" bindtap='addProductImg'></image>
+  <image src='{{upload_domain}}{{productImg}}' wx:else style='width:99rpx;height:99rpx' bindtap='addProductImg'></image>
+</view>
+
+
+<view class='coupon_name'>
+  <view>锁客返佣（%） : </view>
+  <input placeholder='一经发布，无法修改' value='{{couponRate}}' type='number' placeholder-class='holderClass' bindinput='rateTap'></input>
+</view>
+
+<view>
+  <radio-group class="radio-group" bindchange="radioChange" style='margin-top:30rpx;display:flex;justify-content:space-around;color:rgba(51,51,51,1);font-size:30rpx;'>
+    <label class="radio" wx:for="{{items}}" wx:key='{{index}}'>
+      <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+    </label>
+  </radio-group>
+</view>
+
+<view class='coupon_name' wx:if="{{type=='extension'}}">
+  <view>推广返佣（%） : </view>
+  <input placeholder='一经发布，无法修改' value='{{extensionRate}}' type='number' placeholder-class='holderClass' bindinput='extensionRateTap'></input>
+</view>
+
+<view style='font-size:24rpx;color:#999;margin:10rpx 0 30rpx 20rpx;' wx:if="{{type!=='extension'}}">备注：礼包赠送时返利给推荐人的礼包金额比例!</view>
+
+<view style='font-size:24rpx;color:#999;margin:10rpx 0 30rpx 20rpx;' wx:if="{{type=='extension'}}">备注：平台收取1元，给到推荐人：{{m3.getNum(caleValue)}} 元</view>
+
+<view class='coupon_name2' >
+  <view style='font-size:24rpx;'>使用须知：
+    <text style='font-size:24rpx;color:#4768F3;' bindtap='goTemplate'>选择模板</text> </view>
+  <view style='font-size:24rpx;color:red;' bindtap='showXieYi'>《创建说明》</view>
+</view>
+
+<view class='coupon_name' wx:if='{{textFlag}}'>
+  <view>使用说明：</view>
+  <textarea maxlength="-1" auto-height="true" placeholder='请输入券使用须知' placeholder-class='holderClass' bindinput='describeTap' value='{{template_id}}'></textarea>
+</view>
+
+<view class='submitBtn' bindtap='submitBtn'>
+  提交审核
+</view>
+
+<view class="zhezhao" hidden='{{!xieyi}}'></view>
+<view class="kcrzxy" hidden='{{!xieyi}}'>
+  <view class="kcrzxyhd">如何制作模板</view>
+  <scroll-view scrollY class="kcrzxybd" style="height: 600rpx;">
+    <rich-text nodes="{{panic_buying_coupon_release_agreement}}"></rich-text>
+  </scroll-view>
+  <view bindtap="queren" class="queren1">确定</view>
+</view>

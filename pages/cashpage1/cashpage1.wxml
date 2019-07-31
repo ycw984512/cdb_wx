@@ -1,0 +1,76 @@
+<view class="zhyue">
+  <view>账户余额：</view>
+  <view class='all' bindtap='allmoney'><view>￥{{list.money}}</view><view>全部提现</view></view>
+</view>
+<view class="zhyue">
+  <view>提现方式：</view>
+  <view>
+    <block wx:for="{{txtypes}}" wx:key="ss">
+      <text class='{{current == index?"sel":""}}' bindtap='txsel' data-dex='{{index}}'>{{item}}</text>
+    </block>
+  </view>
+</view>
+<!-- 微信
+<view class='txwx' wx:if="{{current == 0}}">
+  <form bindsubmit='wxform'>
+    <view class='form-group'>
+      <view>提现金额：</view>
+      <view><input type='digit' name="txmoney" placeholder='请输入提现金额' value='{{allmoney}}'></input></view>
+    </view>
+    <input value='{{list.money}}' name="umoney" hidden='true' />
+    <button form-type='submit' hover-class='none'>提交</button>
+  </form>
+</view> -->
+<!-- 支付宝 -->
+<view class='txwx' wx:if="{{current == 0}}">
+  <form bindsubmit='zfbform'>
+    <view class='form-group'>
+      <view>支付宝账号：</view>
+      <view><input type='text' name="zhbzhanghao" placeholder='请输入支付宝账号'></input></view>
+    </view>
+    <view class='form-group'>
+      <view>支付宝姓名：</view>
+      <view><input type='text' name="zhbname" placeholder='请输入支付宝姓名'></input></view>
+    </view>
+    <view class='form-group'>
+      <view>提现金额：</view>
+      <view><input type='digit' name="txmoney" placeholder='请输入提现金额' value='{{allmoney}}'></input></view>
+    </view>
+     <input value='{{list.money}}' name="umoney" hidden='true' />
+    <button form-type='submit' hover-class='none'>提交</button>
+  </form>
+</view>
+<!-- 银行卡 -->
+<view class='txwx' wx:if="{{current == 1}}">
+  <form bindsubmit='yhform'>
+    <picker range='{{bank}}' value='{{yhkindex}}' bindchange='selyhk'>
+    <view class='form-group'>
+      <view>选择银行卡：</view>
+      <view><input disabled name="yhnames" placeholder='请选择银行卡' value='{{bank[yhkindex]}}'></input></view>
+    </view>
+    </picker>
+    <view class='form-group'>
+      <view>开户行地址：</view>
+      <view><input type='text' name="yhdizhi" placeholder='请输入开户行地址'></input></view>
+    </view>
+    <view class='form-group'>
+      <view>银行卡号：</view>
+      <view><input type='number' name="yhkahao" placeholder='请输入银行卡号'></input></view>
+    </view>
+    <view class='form-group'>
+      <view>预留姓名：</view>
+      <view><input type='text' name="yhname" placeholder='请输入预留姓名'></input></view>
+    </view>
+    <view class='form-group'>
+      <view>提现金额：</view>
+      <view><input type='digit' name="txmoney" placeholder='请输入提现金额' value='{{allmoney}}'></input></view>
+    </view>
+     <input value='{{list.money}}' name="umoney" hidden='true' />
+    <button form-type='submit' hover-class='none'>提交</button>
+  </form>
+</view>
+<!-- 提现说明 -->
+<!-- <view class='shuoming'>
+  <view>1、提现需要扣除手续费0.2%</view>
+  <view>2、实际到账金额=提现金额-(提现金额*提现手续费)</view>
+</view> -->

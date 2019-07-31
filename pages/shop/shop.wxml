@@ -1,0 +1,4 @@
+<view class='shangcheng'>
+    <image src='/static/images/scbanner.png'></image>
+    <view>暂未开放 敬请期待</view>
+</view>

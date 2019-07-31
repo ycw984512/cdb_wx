@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "修改门店资料",
+  "usingComponents": {
+    "select": "../../components/select/select"
+  }
+}

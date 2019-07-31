@@ -1,0 +1,13 @@
+<view class='market_wrap' wx:for='{{allData}}' wx:key='{{index}}'>
+    <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+   <view class='market_title'>
+        <view>{{item.name}}</view>
+        <text>领取时间：{{item.create_time}}</text>
+   </view>
+   <view class='coupon'>卡券 : {{item.coupon_name}}</view>
+</view>
+
+
+<view style='text-align:center;color:#999999;font-size:24rpx;margin-top:50rpx;'>
+   没有更多了
+</view>

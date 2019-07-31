@@ -1,0 +1,113 @@
+<wxs src="../../common/num.wxs" module="m1" />
+<wxs src="../../common/num1.wxs" module="m2" />
+<view class='gift_list'>
+  <view class='gift_name'>
+    <text>礼包名称</text>
+    <text>{{giftData.name}}</text>
+  </view>
+  <view class='gift_total'>
+    <text>发布总数：</text>
+    <text>{{giftData.num}}个</text>
+  </view>
+  <view class='gift_number'>
+    <text>已领取数量： </text>
+    <text>{{giftData.received_num}}个</text>
+  </view>
+  <view class='gift_have'>
+    <text>库存数量： </text>
+    <text>{{giftData.stock}}个</text>
+  </view>
+  <view class='gift_have' wx:if='{{giftData.gift}}'>
+    <text>附赠实物 </text>
+    <text>{{giftData.gift}}</text>
+  </view>
+</view>
+
+<view style='margin:50rpx 0 20rpx 25rpx;font-size:700;font-weight:700;color:rgba(51,51,51,1);font-family:PingFang-SC-Bold;'>
+  礼包明细
+</view>
+
+
+<view wx:if="{{giftDetailData.length>0}}" class='wrap'>
+  <view class='new_coupon' wx:for="{{giftDetailData}}" wx:key="{{index}}">
+    <image style='width:100%;height:100%' src='/static/images/prolist.png'></image>
+    <view class='top_left'>
+      <view class='top_left_img'>
+        <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+      </view>
+      <view class='top_left_name'>
+        <view class='top_left_name_goods'>{{item.name}}</view>
+        <view class='top_left_name_store'>【
+          <view>{{item.store_name}}</view>】
+          <view wx:if='{{item.distance>1}}'> <image style='width:26rpx;height:24rpx;margin-right:8rpx;margin-top:5rpx'src='/static/images/dizhi.png'></image>{{m1.getFix(item.distance)}}km</view>
+          <view wx:else> <image style='width:26rpx;height:24rpx;margin-right:8rpx;margin-top:5rpx;'src='/static/images/dizhi.png'></image>{{item.distance*1000}}m</view>
+        </view>
+        <view class='top_left_name_rate'>
+          <view>锁客返佣{{item.rebate_commission}}%</view>
+        </view>
+      </view>
+    </view>
+    <view class='top_right'>
+      <view class='top_right_wrap'>
+        <view>价值</view>
+        <view>{{m2.getFilter(item.original_price)}}
+          <text>元</text>
+        </view>
+      </view>
+    </view>
+    <view class='bottom_left'>
+      <view>有效期 : {{item.end_time}}</view>
+    </view>
+    <view class='bottom_right'>
+      <view>剩余 ： {{item.stock}}张</view>
+    </view>
+  </view>
+</view>
+<view wx:else style='color:#999;text-align:center;margin-top:300rpx;'>暂无数据</view>
+
+
+<!-- <view class='CouponList_wrap' wx:for="{{giftDetailData}}" wx:key="{{index}}">
+  <view class='CouponList'>
+    <view class='CouponList_img'>
+      <image src='{{upload_domain}}{{item.logo}}' wx:if='{{upload_domain&&item.logo}}'></image>
+    </view>
+    <view class='CouponList_name'>
+      <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+      <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+    </view>
+    <view class='CouponList_rate'>
+    </view>
+    <view class='CouponList_money'>
+
+      <view style='margin-left:16rpx;'>
+        <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>价值 : </text>
+        <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>{{item.original_price}}元</text>
+      </view>
+
+
+      <view style='display:flex; justify-content: flex-end;'>
+        <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+        <block>
+          <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+            {{m1.getFix(item.distance)}}km
+          </view>
+          <view style='font-size:24rpx;color:#999' wx:else>
+            {{item.distance*1000}}m
+          </view>
+        </block>
+
+      </view>
+    </view>
+
+  </view>
+
+  <view class='rate'>
+    <view class='rate_number'>
+      数量 : {{item.num}}张
+    </view>
+    <view class='lock_rate'>
+      锁客返佣{{item.rebate_commission}}%
+    </view>
+  </view>
+</view> -->

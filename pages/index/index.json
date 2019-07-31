@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "充店宝",
+  "usingComponents": {
+    "gosearch": "../../components/gosearch/gosearch"
+  }
+}

@@ -1,0 +1,45 @@
+.wrap {
+  width: 687rpx;
+  height: 1120rpx;
+  margin: 30rpx 30rpx 0 30rpx;
+  background: #eee;
+  position: relative;
+}
+
+.wrap image {
+  width: 100%;
+  height: 100%;
+}
+
+.warp_list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: flex-start;
+}
+
+.warp_list image {
+  width: 288rpx;
+  height: 288rpx;
+  margin-top: 50rpx;
+  margin-left: 201rpx;
+}
+
+.list_btn {
+  width: 484rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #1b82d1;
+  margin:50rpx auto;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+}

@@ -1,0 +1,12 @@
+<block wx:if="{{allData.length>0}}">
+  <view class='market_wrap' wx:for='{{allData}}' wx:key='{{index}}'>
+    <view class='market_title'>
+      <view wx:if='{{item.type==1}}'>待审核</view>
+      <view wx:if='{{item.type==2}}' style='color:#2EC377;'>已通过</view>
+      <view wx:if='{{item.type==3}}' style='color:rgba(254,1,43,1)'>已拒绝</view>
+      <text>申请时间：{{item.create_time}}</text>
+    </view>
+    <view class='coupon'>提现金额 : {{item.amount}}</view>
+  </view>
+</block>
+<view wx:else style='color:#999;text-align:center;margin-top:100rpx;'>暂无数据</view>

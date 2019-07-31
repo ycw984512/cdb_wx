@@ -1,0 +1,373 @@
+/* pages/mypromotiondetail/mypromotiondetail.wxss */
+
+.CouponList_wrap {
+  margin: 0rpx 20rpx 0 20rpx;
+}
+
+.CouponList {
+  display: flex;
+  height: 176rpx;
+  padding: 10rpx 0rpx;
+  position: relative;
+}
+
+.CouponList_img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CouponList_img image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.CouponList_name {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24rpx;
+  justify-content: space-around;
+}
+
+.CouponList_rate {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24rpx;
+  justify-content: flex-end;
+}
+
+.CouponList_money {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-left: 24rpx;
+  justify-content: flex-end;
+  right: 10rpx;
+  bottom: 10rpx;
+}
+
+.CouponList_money view {
+  margin-bottom: 10rpx;
+}
+
+.border_bottom {
+  height: 1px;
+  background: #999;
+}
+
+.rate {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.extension_rate {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(255, 161, 27, 1);
+  margin-top: 20rpx;
+  margin-right: 50rpx;
+}
+
+.lock_rate {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: #1b82d1;
+  margin-top: 20rpx;
+}
+
+.number_list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rpx;
+}
+
+.number_list view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.number_list view text {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+}
+
+.number_list .total text {
+  color: #fe012b;
+}
+
+.number_list .receive text {
+  color: #ffa11b;
+}
+
+.number_list .write_off text {
+  color: #00cda9;
+}
+
+.number_list .lockRate text {
+  color: #1b82d1;
+}
+
+.number_list view view {
+  margin-top: 30rpx;
+  font-size: 25rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.use_instructions {
+  width: 100%;
+  padding: 50rpx 0 20rpx 0;
+  margin-left: 30rpx;
+}
+
+.user_title {
+  margin: 0 0 20rpx 0rpx;
+  width: 100%;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.user_point {
+  width: 100%;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.validity, .validity_data {
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.validity_data {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+
+.top_wrap {
+  margin-top: 50rpx;
+}
+
+.tab1_index {
+  display: flex;
+  margin: 20rpx 20rpx 0 20rpx;
+  position: relative;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.tab1_index image {
+  width: 66rpx;
+    height: 66rpx;
+}
+
+.tab1_index view {
+  margin: 0rpx 0 0 20rpx;
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.tab1_index text {
+  position: absolute;
+  top: 10rpx;
+  right: 0rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+.wrap {
+  background: #eee;
+  padding: 20rpx auto;
+  width: 100%;
+  height: 350rpx;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.new_coupon {
+  width: 96%;
+  height: 280rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+new_coupon:nth-child(1) {
+  margin-top: 0rpx;
+}
+
+.top_left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 66%;
+  height: 80%;
+  display: flex;
+}
+
+.top_left .top_left_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 43%;
+  padding-left: 10rpx;
+}
+
+.top_left .top_left_img image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius:20rpx;
+
+}
+
+.top_left .top_left_name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 207rpx;
+  margin-top: 5rpx;
+  width: 60%;
+}
+
+.top_left .top_left_name_goods {
+  font-size: 30rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+  font-weight: 700;
+}
+
+.top_left .top_left_name_store {
+  font-size: 26rpx;
+  display: flex;
+  width: 100%;
+  margin-bottom: 42rpx;
+}
+
+.top_left .top_left_name_store view:nth-child(1) {
+  max-width: 64%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.top_left .top_left_name_store view:nth-child(2) {
+  position: absolute;
+  top: 0rpx;
+  right: -229rpx;
+  margin-top: 10rpx;
+}
+
+.top_left .top_left_name_rate {
+  font-size: 16rpx;
+  display: flex;
+  color: #e75252;
+  width: 100%;
+}
+
+.top_left .top_left_name_rate view:nth-child(1) {
+  padding: 6rpx;
+  border: 1px solid #e75252;
+  border-radius: 12rpx;
+  margin-left: 15rpx;
+}
+
+.top_left .top_left_name_rate view:nth-child(2) {
+  padding: 6rpx;
+  margin-left: 20rpx;
+  border: 1px solid #e75252;
+  border-radius: 12rpx;
+}
+
+.top_right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34%;
+  height: 80%;
+}
+
+.top_right .top_right_wrap {
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.top_right .top_right_wrap view:nth-child(1) {
+  font-size: 30rpx;
+  color: #e75252;
+  margin-top: 20rpx;
+}
+
+.top_right .top_right_wrap  view:nth-child(2) {
+  font-size: 56rpx;
+  color: #e75252;
+  font-weight: 700;
+}
+
+.top_right  .top_right_wrap view:nth-child(2) text {
+  font-size: 30rpx;
+  color: #e75252;
+  font-weight: 300;
+}
+
+.top_right .top_right_wrap  view:nth-child(3) {
+  font-size: 30rpx;
+  color: #e75252;
+  margin-bottom: 33rpx;
+}
+
+.bottom_left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 66%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom_right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 34%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom_left  view {
+  font-size: 24rpx;
+  margin-right: 50rpx;
+}
+
+.bottom_right view {
+  font-size: 24rpx;
+}

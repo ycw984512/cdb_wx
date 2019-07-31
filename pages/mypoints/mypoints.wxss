@@ -1,0 +1,42 @@
+.points_title {
+  text-align: center;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
+  margin-top: 50rpx;
+}
+
+.points_number {
+  text-align: center;
+  font-size: 50rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+  margin-top: 30rpx;
+}
+
+.recharge {
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #fff;
+  text-align: center;
+  background: #1b82d1;
+  margin: 50rpx auto;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+}
+
+.lookPoints {
+  width: 686rpx;
+  height: 84rpx;
+  line-height: 88rpx;
+  color: #1b82d1;
+  text-align: center;
+  background: #fff;
+  margin: 50rpx auto;
+  border-radius: 50rpx;
+  border: 1px solid #999;
+  font-size: 32rpx;
+}

@@ -1,0 +1,204 @@
+<!--pages/haspublicpromotion/haspublicpromotion.wxml-->
+<wxs src="../../common/num1.wxs" module="m2" />
+
+
+<block wx:if="{{proCouponData.length>0}}">
+  <view wx:for="{{proCouponData}}" wx:key="{{index}}" class='wrap'>
+    <view class='new_coupon' bindtap='goPromotionDetail' data-id='{{item.id}}'>
+      <image style='width:100%;height:100%' src='/static/images/prolist.png'></image>
+      <view class='top_left'>
+        <view class='top_left_img'>
+          <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+        </view>
+        <view class='top_left_name'>
+          <view class='top_left_name_goods'>{{item.name}}</view>
+          <view class='top_left_name_store'>【
+            <view>{{item.store_name}}</view>】
+          </view>
+          <view class='top_left_name_rate'>
+            <view>锁客返佣{{item.rebate_commission}}%</view>
+          </view>
+        </view>
+      </view>
+      <view class='top_right'>
+        <view class='top_right_wrap'>
+          <view>价值</view>
+          <view>{{m2.getFilter(item.original_price)}}
+            <text>元</text>
+          </view>
+        </view>
+      </view>
+      <view class='bottom_left'>
+        <view>有效期 : {{item.end_time}}</view>
+      </view>
+      <view class='bottom_right'>
+        <view>剩余 ： {{item.stock}}张</view>
+      </view>
+      <view class='bottom_img'>
+        <!-- <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==0}}">待提交审核</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==1}}">待审核</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==2}}">待发布</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==3}}">已发布</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==4}}">已下架</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==5}}">已拒绝</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==6}}">已过期</text> -->
+        <image src='/static/images/111.png' wx:if="{{item.state==1}}"></image>
+        <image src='/static/images/222.png' wx:if="{{item.state==6}}"></image>
+        <image src='/static/images/333.png' wx:if="{{item.state==4}}"></image>
+
+      </view>
+    </view>
+
+    <!-- 根据后台传过来的值动态渲染三种情况中的一种 -->
+    <!-- 待提交审核 -->
+    <view class='btn_list1' wx:if="{{item.state==0}}">
+      <view bindtap='changeCoupon' data-id='{{item.id}}'>修改卡券</view>
+      <view bindtap='immediateCheck' data-id='{{item.id}}'>提交审核</view>
+      <view bindtap='removeCoupon' data-id='{{item.id}}'>删除卡券</view>
+    </view>
+    <!-- 待审核 -->
+    <view class='btn_list1' wx:if="{{item.state==1}}">
+      <view bindtap='withdraw' data-id='{{item.id}}'>撤回申请</view>
+    </view>
+    <!-- 待发布 -->
+    <view class='btn_list1' wx:if="{{item.state==2}}">
+      <view bindtap='removeCoupon' data-id='{{item.id}}'>删除卡券</view>
+      <view bindtap='changeCoupon' data-id='{{item.id}}'>修改卡券</view>
+      <view bindtap='immediatePublic' data-id='{{item.id}}'>立即发布</view>
+    </view>
+
+    <!-- 已发布 -->
+    <view class='btn_list1' wx:if="{{item.state==3}}">
+      <view bindtap='lookCoupon' data-id='{{item.id}}'>查看记录</view>
+      <view bindtap='immediateLower' data-id='{{item.id}}'>立即下架</view>
+      <view bindtap='addNumberTap' data-id='{{item.id}}'>增加数量</view>
+    </view>
+
+    <!-- 已下架 -->
+    <view class='btn_list1' wx:if="{{item.state==4}}">
+      <!-- <view bindtap='changeCoupon' data-id='{{item.id}}'>修改卡券</view> -->
+      <view bindtap='removeCoupon' data-id='{{item.id}}'>删除卡券</view>
+      <view bindtap='repeatPublic' data-id='{{item.id}}'>重新发布</view>
+    </view>
+    <!-- 已拒绝 -->
+    <view class='btn_list1' wx:if="{{item.state==5}}">
+      <view bindtap='changeCoupon' data-id='{{item.id}}'>修改卡券</view>
+      <view bindtap='immediateCheck' data-id='{{item.id}}'>提交审核</view>
+    </view>
+    <!-- 已过期 -->
+    <view class='btn_list1' wx:if="{{item.state==6}}">
+      <view bindtap='lookCoupon' data-id='{{item.id}}'>查看记录</view>
+      <view bindtap='removeCoupon' data-id='{{item.id}}'>删除卡券</view>
+    </view>
+  </view>
+</block>
+<view wx:else style='color:#999;text-align:center;margin-top:300rpx;'>暂无数据</view>
+
+<!-- 
+<block wx:if="{{proCouponData.length>0}}">
+  <view class='CouponList_wrap' wx:for="{{proCouponData}}" wx:key="{{index}}">
+    <view class='CouponList' data-id='{{item.id}}' bindtap='goPromotionDetail'>
+      <view class='CouponList_img'>
+        <image src='{{upload_domain}}{{item.logo}}' wx:if="{{item.logo}}"></image>
+      </view>
+      <view class='CouponList_name'>
+        <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+        <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+        <view style='font-size:24rpx;color:#999'>剩余{{item.stock}}张</view>
+      </view>
+      <view class='CouponList_rate'>
+      </view>
+      <view class='CouponList_money'>
+        <view style='margin-left:16rpx;text-align:center'>
+          <text style='font-size:28rpx;color:#999;font-weight:700;' wx:if="{{item.state==0}}">待提交审核</text>
+          <text style='font-size:28rpx;color:#999;font-weight:700;' wx:if="{{item.state==1}}">待审核</text>
+          <text style='font-size:28rpx;color:#999;font-weight:700;' wx:if="{{item.state==2}}">待发布</text>
+          <text style='font-size:28rpx;color:#999;font-weight:700;' wx:if="{{item.state==3}}">已发布</text>
+          <text style='font-size:28rpx;color:#999;font-weight:700;' wx:if="{{item.state==4}}">已下架</text>
+          <text style='font-size:28rpx;color:#999;font-weight:700;' wx:if="{{item.state==5}}">已拒绝</text>
+        </view>
+        <view style='margin-left:16rpx;'>
+          <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>价值 : </text>
+          <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>{{item.original_price}}元</text>
+        </view>
+        <view class='rate'>
+          <view class='lock_rate'>
+            锁客返佣{{item.rebate_commission}}%
+          </view>
+        </view>
+
+
+      </view>
+
+    </view>
+    <view class='border_bottom'></view>
+
+
+ 
+    <view class='btn_list1' wx:if="{{item.state==0}}">
+      <view bindtap='changeCoupon' data-id='{{item.id}}'>修改卡券</view>
+      <view bindtap='immediateCheck' data-id='{{item.id}}'>提交审核</view>
+      <view bindtap='removeCoupon' data-id='{{item.id}}'>删除卡券</view>
+    </view>
+
+    <view class='btn_list1' wx:if="{{item.state==1}}">
+      <view bindtap='withdraw' data-id='{{item.id}}'>撤回申请</view>
+    </view>
+
+    <view class='btn_list1' wx:if="{{item.state==2}}">
+      <view bindtap='removeCoupon' data-id='{{item.id}}'>删除卡券</view>
+      <view bindtap='changeCoupon' data-id='{{item.id}}'>修改卡券</view>
+      <view bindtap='immediatePublic' data-id='{{item.id}}'>立即发布</view>
+    </view>
+
+
+    <view class='btn_list1' wx:if="{{item.state==3}}">
+      <view bindtap='lookCoupon' data-id='{{item.id}}'>查看记录</view>
+      <view bindtap='immediateLower' data-id='{{item.id}}'>立即下架</view>
+      <view bindtap='addNumberTap' data-id='{{item.id}}'>增加数量</view>
+    </view>
+
+
+    <view class='btn_list1' wx:if="{{item.state==4}}">
+
+      <view bindtap='removeCoupon' data-id='{{item.id}}'>删除卡券</view>
+      <view bindtap='repeatPublic' data-id='{{item.id}}'>重新发布</view>
+    </view>
+
+    <view class='btn_list1' wx:if="{{item.state==5}}">
+      <view bindtap='changeCoupon' data-id='{{item.id}}'>修改卡券</view>
+      <view bindtap='immediateCheck' data-id='{{item.id}}'>提交审核</view>
+    </view>
+
+  </view>
+
+</block>
+<view wx:else style='color:#999;text-align:center;margin-top:600rpx;'>暂无数据</view> -->
+
+<!-- 立即发布弹窗 -->
+<view class="zhezhao" hidden='{{flag}}'></view>
+<view class="kcrzxy" hidden='{{flag}}'>
+  <view class="kcrzxyhd">卡券数量</view>
+
+  <input bindinput='listerInput' bindconfirm="queren" value='{{addNumber}}' type='number' placeholder='请输入发布优惠券的数量' style='border:1px solid #999;padding:20rpx 20rpx;' placeholder-class='holder'></input>
+  <view>需要扣除
+    <text style='color:red;font-weight:700'> {{all_integral}} </text>积分</view>
+  <view style='display:flex;justify-content:space-around'>
+    <view bindtap="quxiao" class="quxiao">取消</view>
+    <view bindtap="queren" class="queren">确定</view>
+  </view>
+</view>
+
+<!-- 增加数量弹窗 -->
+<view class="zhezhao" hidden='{{addNumFlag}}'></view>
+<view class="kcrzxy" hidden='{{addNumFlag}}'>
+  <view class="kcrzxyhd">卡券数量</view>
+
+  <input bindinput='listerAddNumber' bindconfirm="addNumberqueren" value='{{addNumberValue}}' type='number' placeholder='请输入需要增加优惠券的数量' style='border:1px solid #999;padding:20rpx 20rpx;' placeholder-class='holder'></input>
+  <view>需要扣除
+    <text style='color:red;font-weight:700'> {{all_integral}} </text>积分</view>
+  <view style='display:flex;justify-content:space-around'>
+    <view bindtap="addNumberquxiao" class="quxiao">取消</view>
+    <view bindtap="addNumberqueren" class="queren">确定</view>
+  </view>
+</view>

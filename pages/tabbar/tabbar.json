@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "tabbar示例",
+  "usingComponents": {
+    "clearInput": "../../components/clearInput/clearInput"
+  }
+}

@@ -1,0 +1,14 @@
+/* pages/addpersonindex/addpersonindex.wxss */
+
+.submitBtn{
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #fff;
+  text-align: center;
+  background: #1b82d1;
+  margin: 50rpx auto;
+  border-radius: 50rpx;
+  margin-bottom: 100rpx;
+
+}

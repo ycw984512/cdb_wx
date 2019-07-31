@@ -1,0 +1,97 @@
+<!-- pages/searchHotel/searchHotel.wxml -->
+<wxs src="../../common/num.wxs" module="m1" />
+<!-- 顶部标题和选择市 -->
+<view class='pageHeader'>
+  <view class='searchHeader'>
+    <view class='citySelect'>
+      <!-- <image src='../../static/images/dizhi.png' style='width:22rpx;height:28rpx;' bindtap='locationTap'></image> -->
+      <view class='location' bindtap='locationTap'>{{city}}</view>
+      <image src='../../static/images/dizhi.png' style='width:24rpx;height:28rpx;margin-left:10rpx;' bindtap='locationTap'></image>
+    </view>
+    <!-- 引入搜索栏组件 -->
+    <gosearch style='flex:1' inputHint='请输入名称进行搜索' icon-class='common_search_img' input-class='common_search_input' confirmType='search' bind:inputListener='inputListener' bind:inputConfirm='searchEvent' bind:sancode="saoCode" />
+  </view>
+  <!-- 轮播图 -->
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{true}}">
+    <block wx:for="{{bannerData}}" wx:key="index">
+      <swiper-item>
+        <image wx:if="{{item&&upload_domain}}" src="{{upload_domain}}{{item}}" class="slide-image" style='width:100%;height:100%;' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 抢购券 -->
+  <view class='promotional'>
+    <view class='promotional_coupons'>抢购券</view>
+    <view class='promotional_list'>
+      <view class='promotional_list_sigle' wx:for="{{couponData}}" wx:key="{{index}}" data-id='{{item.id}}' data-title='{{item.name}}' bindtap='goBuyList'>
+        <view>
+          <image src='{{item.icon}}' wx:if="{{item.icon}}"></image>
+        </view>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 促销券 -->
+  <view class='promotional'>
+    <view class='promotional_coupons'>促销券</view>
+    <view class='promotional_list'>
+      <view class='promotional_list_sigle' data-id='{{item.id}}' wx:for="{{couponData}}" wx:key="{{index}}" data-title='{{item.name}}' bindtap='goProList'>
+        <view>
+          <image src='{{item.icon}}' wx:if="{{item.icon}}"></image>
+        </view>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 附近的商家 -->
+  <view class='business'>
+    <view class='business_title'>
+      <text>附近的商家</text>
+    </view>
+    <block wx:if="{{shoplistData.length>0}}">
+      <view class='business_list' bindtap='storeDetail' data-id='{{item.id}}' wx:key="{{index}}" wx:for="{{shoplistData}}">
+        <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+        <view class='business_describe'>
+          <view class='business_describe_top'>{{item.name}}</view>
+          <view class='business_describe_middle'>营业时间 {{item.start_hours}}-{{item.end_hours}}</view>
+          <view class='business_describe_bottom'>
+            {{item.category_name_p}}| {{item.category_name_s}}
+          </view>
+        </view>
+        <block>
+          <view class='business_distance' wx:if='{{item.distance>1}}'>
+            {{m1.getFix(item.distance)}}km
+          </view>
+          <view class='business_distance' wx:else>{{item.distance*1000}}m</view>
+        </block>
+      </view>
+    </block>
+    <view wx:else style='color:#999;text-align:center;margin-top:30rpx;margin-bottom:30rpx'>
+      暂无数据
+    </view>
+  </view>
+</view>
+<!-- 轮询弹出的遮罩和商家需要支付返佣的信息 -->
+<view class='info_wrap' wx:if="{{moneyFlag}}">
+  <view style='font-size:30rpx;text-align:center;background:#1b82d1;color:#fff;padding:25rpx 0'>
+    消息推送
+  </view>
+  <view class='market_wrap' wx:for='{{timeData}}' wx:key='{{index}}'>
+    <view class='market_title'>
+      <view>{{item.msg}}</view>
+      <text>创建时间 : {{item.create_time}}</text>
+    </view>
+  </view>
+  <view class='pay_wrap'>
+    <view class='pay' bindtap='payMoney'>确定</view>
+  </view>
+  <!-- <view class='market_wrap' wx:for='{{allData}}' wx:key='{{index}}'>
+      <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+      <view class='market_title'>
+        <view>{{item.name}}</view>
+        <text>领取时间：{{item.create_time}}</text>
+      </view>
+      <view class='coupon'>卡券 : {{item.coupon_name}}</view>
+    </view> -->
+</view>
+<view class="zhezhao" wx:if="{{moneyFlag}}"></view>

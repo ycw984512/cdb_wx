@@ -1,0 +1,7 @@
+<template name='settingItem'>
+     <view class='settingItem' bindtap='goType'  data-type='{{type}}' >
+           <image src='{{imgUrl}}' style='width:38rpx;height:38rpx;' class='icon'  />
+          <text class='caption'>{{caption}}</text>
+          <image  src='../../static/images/right.png' mode='widthFix' class='icon_img' />
+     </view>
+</template>

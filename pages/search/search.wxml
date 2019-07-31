@@ -1,0 +1,21 @@
+ <!-- <view class='searchHeader'>
+    <view class='citySelect'>
+      <text class='location' bindtap='locationTap'>{{location}}</text>
+      <image src='../../static/images/ic_down_arrow.png' mode='aspectFit' style='width:20rpx;height:20rpx;' bindtap='locationTap'></image>
+    </view>
+    <view class='indexTitle'>
+      <text>充店宝</text>
+    </view>
+
+  </view> -->
+
+    <!-- 引入搜索栏组件 -->
+  <clearInput style='flex:1' inputHint='请输入名称进行搜索' icon-class='common_search_img' input-class='common_search_input' confirmType='search' bind:inputListener='inputListener' bind:inputConfirm='searchEvent' bind:sancode="saoCode" />
+
+  <view class='search_title'>
+      查找内容
+  </view>
+  <view class='coupon'>
+      <view class='{{flag?"coupon_active":"coupon_default"}}' bindtap='changeFlag'>抢购券</view>
+      <view class='{{flag?"coupon_default":"coupon_active"}}' bindtap='changeFlag'>促销券</view>
+  </view> 

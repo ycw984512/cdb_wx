@@ -1,0 +1,224 @@
+/* pages/mygift/mygift.wxss */
+
+.gift_list {
+  margin: 20rpx 30rpx 30rpx 30rpx;
+
+}
+
+.list_top {
+  height: 150rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  background: linear-gradient(to bottom right, #00a2fd, #0bdddf);
+}
+
+.gift_title {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+}
+
+.gift_money {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.gift_price {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+}
+
+.gift_consume {
+  font-size: 28rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 10rpx;
+}
+
+.list_bottom {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20rpx;
+  border: 1rpx solid #eee;
+  padding-bottom: 10rpx;
+}
+
+.gift_number {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gift_btn {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 138rpx;
+}
+
+.btn_remove, .btn_give {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 40rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+
+.btn_give {
+  margin-left: 20rpx;
+  color: #1b82d1;
+}
+
+.image_code {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate3d(-50%, 50%, 0);
+  width: 485rpx;
+  height: 485rpx;
+  z-index: 99;
+  border-radius: 65rpx;
+}
+
+.zhezhao {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 98;
+}
+
+.info_wrap {
+  width: 600rpx;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.market_wrap {
+  width: 94%;
+  margin: 30rpx auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+}
+
+.market_wrap image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.coupon {
+  font-size: 26rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 10rpx;
+  color: rgba(153, 153, 153, 1);
+}
+
+.market_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 30rpx;
+}
+
+.market_title view {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.market_title text {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+
+.pay_wrap {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 30rpx;
+}
+
+.pay, .cancle {
+  width: 150rpx;
+  height: 80rpx;
+  background: #1b82d1;
+  color: #fff;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+}
+
+.btn {
+  width: 100%;
+  height: 128rpx;
+  border-top: 1px solid #ccc;
+  box-shadow: #eee solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0rpx;
+  background: #fff;
+}
+
+.btn_download {
+  width: 690rpx;
+  height: 88rpx;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 88rpx;
+  text-align: center;
+  background: #1b82d1;
+  border-radius: 60rpx;
+}
+radio {
+  width: 38rpx;
+}
+
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 26rpx; /* 对勾大小 26rpx */
+  color: #fff; /* 对勾颜色 */
+  background: #1b82d1;
+  border-color: #1b82d1;
+}

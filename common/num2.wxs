@@ -1,0 +1,7 @@
+var getNum = function (value) {
+
+    value = Number(value).toFixed(2);
+    return value
+
+}
+module.exports.getNum = getNum;

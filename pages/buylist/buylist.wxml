@@ -1,0 +1,119 @@
+<wxs src="../../common/num.wxs" module="m1" />
+<wxs src="../../common/num1.wxs" module="m2" />
+<view class='filterView'>
+  <view class='filterOptions'>
+    <view class="{{shownavindex == 1? 'filterActive' : 'filterItem'}}" bindtap='filterMenuTap' data-index='1'>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" style='display:block;margin-bottom:32rpx;'>
+        <text class="picker" style='float:left'>
+      {{origin}}{{showCity}}
+    </text>
+        <text class="{{priceL1H?'arrowUp':'arrowDown'}}" style='margin-top:48rpx'></text>
+      </picker>
+    </view>
+
+    <view class="{{shownavindex == 2? 'filterActive' : 'filterItem'}}" bindtap='filterMenuTap' data-index='2'>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" style='display:block;margin-bottom:32rpx;'>
+        <text class="picker" style='float:left'>
+  {{title ? title : (multiIndex1[1]==0 ? multiArray1[0][multiIndex1[0]] : multiArray1[1][multiIndex1[1]])}}
+    </text>   
+        <text class="{{priceL2H?'arrowUp':'arrowDown'}}" style='margin-top:48rpx'></text>
+      </picker>
+
+    </view>
+    <text class="{{shownavindex == 3? 'filterActive' : 'filterItem'}}" bindtap='filterMenuTap' data-index='3'>附近</text>
+  </view>
+</view>
+
+<view wx:if="{{buyListData.length>0}}" style='margin-top:88rpx;'>
+  <view class='new_coupon' wx:for="{{buyListData}}" wx:key="{{index}}" bindtap='goBuyDetail' data-id='{{item.id}}'>
+    <image style='width:100%;height:100%' src='/static/images/buylist.png'></image>
+    <view class='top_left'>
+      <view class='top_left_img'>
+        <image src='{{upload_domain}}{{item.logo}}'></image>
+      </view>
+      <view class='top_left_name'>
+        <view class='top_left_name_goods'>{{item.name}}</view>
+        <view class='top_left_name_store'>【
+          <view>{{item.store_name}}</view>】
+          <view wx:if='{{item.distance>1}}'>
+ {{m1.getFix(item.distance)}}km</view>
+          <view wx:else>
+         {{item.distance*1000}}m</view>
+        </view>
+        <view class='top_left_name_rate'>
+          <view>锁客返佣{{item.rebate_commission}}%</view>
+          <view>推广返佣{{item.promotion_commission}}%</view>
+        </view>
+      </view>
+    </view>
+    <view class='top_right'>
+      <view class='top_right_wrap'>
+        <view>体验 / 抢购价</view>
+        <view>{{m2.getFilter(item.buying_price)}}
+          <text>元</text>
+        </view>
+        <view>原价
+        <span style='text-decoration:line-through;text-decoration-color:gray'>{{m2.getFilter(item.original_price)}}元</span> </view>
+      </view>
+    </view>
+    <view class='bottom_left'>
+      <view>有效期 : {{item.end_time}}</view>
+    </view>
+    <view class='bottom_right'>
+      <view>剩余 ： {{item.stock}}张</view>
+    </view>
+  </view>
+</view>
+<view wx:else style='color:#999;text-align:center;margin-top:300rpx;'>暂无数据</view>
+
+
+<!-- 
+<block wx:if="{{buyListData.length>0}}">
+  <view class='CouponList_wrap' wx:for="{{buyListData}}" wx:key="{{index}}">
+    <view class='CouponList' bindtap='goBuyDetail' data-id='{{item.id}}'>
+      <view class='CouponList_img'>
+        <image src='{{upload_domain}}{{item.logo}}'></image>
+      </view>
+      <view class='CouponList_name'>
+        <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+        <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+        <view style='font-size:24rpx;color:#999'>剩余{{item.stock}}张</view>
+      </view>
+      <view class='CouponList_rate'>
+      </view>
+      <view class='CouponList_money'>
+
+        <view style='margin-left:16rpx;'>
+          <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>抢购价 : </text>
+          <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>{{m2.getFilter(item.buying_price)}}元</text>
+        </view>
+
+        <view style='font-size:24rpx;color:#999;text-align:right;font-weight:500;text-decoration:line-through'>原价: {{m2.getFilter(item.original_price)}}元</view>
+
+        <view style='display:flex; justify-content: flex-end;'>
+          <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+          <block>
+            <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+              {{m1.getFix(item.distance)}}km
+            </view>
+            <view style='font-size:24rpx;color:#999' wx:else>
+              {{item.distance*1000}}m
+            </view>
+          </block>
+        </view>
+      </view>
+
+    </view>
+    <view class='border_bottom'></view>
+    <view class='rate'>
+      <view class='extension_rate'>
+        推广返佣{{item.promotion_commission}}%
+      </view>
+      <view class='lock_rate'>
+        锁客返佣{{item.rebate_commission}}%
+      </view>
+    </view>
+  </view>
+
+</block>
+<view wx:else style='color:#999;text-align:center;margin-top:300rpx;'>暂无数据</view> -->

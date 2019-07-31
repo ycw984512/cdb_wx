@@ -1,0 +1,8 @@
+<view class='wrap'>
+  <image src='/static/images/codebg.png'></image>
+  <view class='warp_list'>
+    <text class='list_title'>{{codeData.extension_code}}</text>
+    <image wx:if="{{upload_domain&&codeData.extension_code_img}}" src='{{upload_domain}}{{codeData.extension_code_img}}'></image>
+    <view class='list_btn'>微信扫一扫，使用小程序</view>
+  </view>
+</view>

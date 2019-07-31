@@ -1,0 +1,48 @@
+<import src='template1.wxml' />
+
+<view class='wallet_wrap'>
+    <view class='wallet_title'>我的余额（元）</view>
+    <view class='wallet_money'>{{money}}</view>
+    <view class='wallet_btn'>
+          <view  class='btn_recharge' bindtap='charge_money'>
+            <image src='/static/images/wallet.png'></image>
+            <text>充值</text>
+          </view>
+            <view class='btn_cash' bindtap='cash_money'>
+               <image src='/static/images/wallet2.png'></image>
+            <text>提现</text>
+            </view>
+    </view>
+</view>
+
+
+<template is='settingItem' data="{{caption:'余额记录',imgUrl:'/static/images/icon1.png',type:1}}" />
+<template is='settingItem' data="{{caption:'提现记录',imgUrl:'/static/images/icon2.png',type:2}}" />
+<!-- <template is='settingItem' data="{{caption:'返利记录',imgUrl:'/static/images/icon3.png',type:3}}" />
+<template is='settingItem' data="{{caption:'扣费记录',imgUrl:'/static/images/icon4.png',type:4}}" />  -->
+
+<!-- <view class='record'>
+  <view class='record_list'>
+      <text class='list_recharge'>充值记录</text>
+      <text class='list_number'>+10</text>
+  </view> 
+</view>
+<view class='record' style='border-bottom:1px solid #ccc;'>
+  <view class='record_list'>
+      <text class='list_recharge'>提现记录</text>
+      <text class='list_number'>-6</text>
+  </view> 
+</view>
+<view class='record'>
+  <view class='record_list'>
+      <text class='list_recharge'>返利记录</text>
+      <text class='list_number' style='color:#2EC377;'>+2</text>
+  </view> 
+</view>
+<view class='record'> 
+  <view class='record_list'>
+      <text class='list_recharge'>扣费记录</text>
+      <text class='list_number' style='color:#333333;'>0</text>
+  </view> 
+</view>
+ -->

@@ -1,0 +1,13 @@
+<block wx:if="{{collectionData.length>0}}">
+  <view class='store' wx:for="{{collectionData}}" wx:key="{{index}}" data-id='{{item.store_id}}' bindtap='goStoreDetail'>
+    <view class='store_image'>
+      <image src='{{upload_domain}}{{item.logo}}'></image>
+    </view>
+    <view class='store_title'>
+      <view>{{item.name}}</view>
+      <view>营业时间 {{item.start_hours}}-{{item.end_hours}} </view>
+      <view>{{item.category_name_p}} | {{item.category_name_s}}</view>
+    </view>
+  </view>
+</block>
+<view wx:else style='color:#999;text-align:center;margin-top:100rpx;'>暂无数据</view>

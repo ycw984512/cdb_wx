@@ -1,0 +1,7 @@
+/* pages/loadingIndex/loadingIndex.wxss */
+page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

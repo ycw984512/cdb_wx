@@ -1,0 +1,10 @@
+    <block wx:if="{{tab2Data.length>0}}">
+      <view class='market_wrap' wx:for='{{tab2Data}}' wx:key='{{index}}'>
+        <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+        <view class='market_title'>
+          <view>{{item.name}}</view>
+          <text>推广时间 : {{item.entry_time}}</text>
+        </view>
+      </view>
+    </block>
+    <view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无数据</view>

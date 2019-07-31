@@ -1,0 +1,90 @@
+/* pages/search/search.wxss */
+.common_search_input {
+display: flex;
+flex: 1;
+margin: 16rpx;
+padding: 8rpx 14rpx 8rpx 8rpx;
+font-size: 24rpx;
+border-radius: 10rpx;
+border-bottom: 1rpx solid gray;
+align-items: center;
+background: white;
+border-left: 1rpx solid #dedede;
+border-right: 1rpx solid #dedede;
+margin-top: 8rpx;
+
+}
+
+.searchHeader {
+  width: 100%;
+  height: 90rpx;
+  box-sizing: border-box;
+  background: #fff;
+  display: flex;
+  padding: 0 10rpx 0 20rpx;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 20rpx;
+}
+
+.searchHeader .location {
+  font-size: 24rpx;
+  color: #666;
+  margin-right: 6rpx;
+}
+
+.citySelect {
+  width: 100rpx;
+  margin-top: -30rpx;
+}
+
+.indexTitle {
+  flex: 1;
+  font-size: 26rpx;
+  font-weight: 700;
+  position: relative;
+  margin-top: -30rpx;
+}
+
+.indexTitle text {
+  position: absolute;
+  top: -10rpx;
+  left: 230rpx;
+}
+.search_title{
+    margin-left: 22rpx;
+    font-size:28rpx;
+font-family:PingFang-SC-Medium;
+font-weight:500;
+
+}
+
+.coupon {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+.coupon_default {
+ width: 134rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  border: 1px solid #aaa;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+
+
+.coupon_active{
+  width: 138rpx;
+  height: 44rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  background: #1b82d1;
+  color: #fff;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}

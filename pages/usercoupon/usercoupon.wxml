@@ -1,0 +1,25 @@
+<view class='wrap'>
+  <image src='/static/images/codebg.png'></image>
+  <view class='warp_list'>
+    <image wx:if="{{codeData.code_img}}" src='{{codeData.code_img}}'></image>
+    <text style='font-size:28rpx;text-align:center;margin-top:10rpx;'>{{codeData.store_name}}</text>
+    <view style='width:82%;margin:20rpx auto;font-size:26rpx;'>
+      <text style='margin-left:20rpx;'>* 同一张券仅可领取一次</text>
+    </view>
+    <view style='width:82%;margin:20rpx auto;font-size:26rpx;'>
+      <text style='margin-left:20rpx;'>* 有效期:  {{codeData.start_time}} 至 {{codeData.end_time}}</text>
+    </view>
+    <view style='width:82%;margin:30rpx auto;font-size:28rpx;font-weight:700;text-align:center;'>
+      使用须知
+    </view>
+    <view style='width:82%;margin:20rpx auto;font-size:26rpx;'>
+      <text>* 付款时出示给收银员核销</text>
+    </view>
+    <view style='width:82%;margin:20rpx auto;font-size:26rpx;word-wrap:break-word;'>
+     <text >{{codeData.instructions}}</text>
+    </view>
+
+  </view>
+</view>
+
+<view class='list_btn' bindtap='goUsefulCoupon'>我的优惠券</view>

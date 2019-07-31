@@ -1,0 +1,12 @@
+<view class='market_wrap'>
+    <image src='/static/images/people.png'></image>
+   <view class='market_title'>
+        <view>名称</view>
+        <text>领取时间：2019-05-28</text>
+   </view>
+</view>
+
+
+  <view class='submitBtn' bindtap='submitBtn'>
+    确认
+  </view>

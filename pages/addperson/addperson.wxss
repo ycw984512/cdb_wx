@@ -1,0 +1,66 @@
+.header {
+  background: #1b82d1;
+  height: 450rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header_image image {
+  width: 240rpx;
+  height:240rpx;
+}
+
+.header_title {
+  font-size: 30rpx;
+  color: white
+
+}
+
+.market_wrap {
+  width: 94%;
+  margin: 30rpx auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+}
+
+.market_wrap image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.market_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+
+.market_title view {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.market_title text {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+
+.market_remove{
+  position: absolute;
+  top: 10rpx;
+  right: 20rpx;
+  padding: 13rpx;
+  border:1px solid #ccc;
+  color: red;
+  font-size: 26rpx;
+  border-radius: 12rpx;
+}

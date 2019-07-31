@@ -1,0 +1,96 @@
+/* pages/minePage/minePage.wxss */
+
+.settingItem {
+  display: flex;
+  width: 92%;
+  justify-content: flex-start;
+  background: white;
+  border-bottom: #dedede solid 1px;
+  padding: 22rpx 0rpx 22rpx 0rpx;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.settingItem .caption {
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
+}
+
+.settingItem .icon {
+  margin-left: 20rpx;
+}
+
+.settingItem .icon_img {
+  width: 28rpx;
+  position: absolute;
+  right: 20rpx;
+}
+
+.user-info {
+  padding: 0 0 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -31rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+  border: 1px solid #eee;
+}
+
+.name {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+}
+
+.use_main {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 95rpx;
+}
+
+.juchi {
+  position: absolute;
+  left: 30rpx;
+  bottom: 0;
+  width: 690rpx;
+  height: 120rpx;
+}
+
+.juchi_wrap {
+  position: relative;
+  top: 38rpx;
+  left: -376rpx;
+}
+
+.money_wrap {
+  position: absolute;
+  top: 354rpx;
+  left: 99rpx;
+  display: flex;
+  font-size: 30rpx;
+}
+
+.money_jinbi {
+  padding: 20rpx 30rpx;
+  border-right: 1px solid #ccc;
+}
+
+.money_jifen {
+  padding: 20rpx 0;
+}

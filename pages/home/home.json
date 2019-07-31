@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的",
+  "navigationBarBackgroundColor": "#7A93FD",
+  "usingComponents": {},
+  "onReachBottomDistance":50
+}

@@ -1,0 +1,23 @@
+<form bindsubmit='jianyiform'>
+  <view class="form-groun">
+    <view class='jytit'>请输入您的意见或建议（必填）</view>
+    <textarea name="jianyi" placeholder='意见或建议' maxlength='300' value='{{content}}' bindinput='jianyilen'></textarea>
+    <text>{{jylen}}/300</text>
+  </view>
+  <view class='list'>
+    <view class='listtxt'>
+      <view>手机号码</view>
+      <view><input type='number' placeholder='必填' name="tels" value='{{tels}}' bindinput='tel' maxlength='11'></input></view>
+    </view>
+    <view class='listtxt'>
+      <view>邮箱</view>
+      <view><input type='text' placeholder='选填' name="email"></input></view>
+    </view>
+    <view class='listtxt'>
+      <view>QQ号码</view>
+      <view><input type='number' placeholder='选填' name="qq"></input></view>
+    </view>
+  </view>
+  <button form-type='submit' hover-class='none' class='subbtn' wx:if="{{required}}" confirm-type="done">提交</button>
+  <button hover-class='none' class='disbtn' wx:else>提交</button>
+</form>

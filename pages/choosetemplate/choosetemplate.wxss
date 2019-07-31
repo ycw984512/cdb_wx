@@ -1,0 +1,35 @@
+.template_sigle {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: #aaa;
+}
+
+.template_sigle text {
+  margin-left: 30rpx;
+}
+
+radio {
+  width: 38rpx;
+}
+
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 26rpx; /* 对勾大小 26rpx */
+  color: #fff; /* 对勾颜色 */
+  background: #4768f3;
+  border-color: #4768f3;
+}

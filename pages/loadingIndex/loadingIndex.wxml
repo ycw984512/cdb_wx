@@ -1,0 +1,1 @@
+<button open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:if="{{flag}}" type="primary" style="margin-top:500rpx;">微信登录</button>

@@ -1,0 +1,35 @@
+/* components/clearInput/clearInput.wxss */
+
+.clearInput {
+     display: -webkit-flex;
+     margin: 16rpx;
+     padding: 8rpx 14rpx 8rpx 8rpx;
+     font-size: 24rpx;
+     border-radius: 16rpx;
+     border: 1rpx solid gray;
+     align-items: center;
+}
+
+.searchImg {
+     width: 35rpx;
+     height: 35rpx;
+     vertical-align: center;
+}
+.erweima{
+  background-image: url("data:image/svg+xml;base64,77u/PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiB2aWV3Qm94PSIwIDAgNDggNDgiIGZpbGw9InJnYmEoMTcwLCAxNzAsIDE3MCwgMSkiPgogICAgPHBhdGggZD0iTTAgMGg0OHY0OEgweiIgZmlsbD0ibm9uZSI+PC9wYXRoPgogICAgPHBhdGggZD0iTTYgMTB2OGg0di04aDhWNmgtOGMtMi4yMSAwLTQgMS43OS00IDR6bTQgMjBINnY4YzAgMi4yMSAxLjc5IDQgNCA0aDh2LTRoLTh2LTh6bTI4IDhoLTh2NGg4YzIuMjEgMCA0LTEuNzkgNC00di04aC00djh6bTAtMzJoLTh2NGg4djhoNHYtOGMwLTIuMjEtMS43OS00LTQtNHoiPjwvcGF0aD4KPC9zdmc+");
+  width: 52rpx;
+  height: 52rpx;
+  background-size: cover;
+}
+
+/* .clearImgShow {
+     width: 35rpx;
+     height: 35rpx;
+     vertical-align: center;
+     position: relative;
+}
+
+
+.clearImgHide {
+     display: none;
+} */

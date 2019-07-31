@@ -1,0 +1,86 @@
+<view wx:if="{{giftList.length>0}}" style="margin-bottom:140rpx;">
+  <view class='gift_list' wx:for="{{giftList}}" wx:key="{{index}}">
+    <view class='list_top' bindtap='goGiftDetail' data-id='{{item.id}}'>
+      <view class='gift_title'>{{item.name}}</view>
+      <view class='gift_money'>
+        <text class='gift_price'>{{item.pay_money}}元</text>
+        <text class='gift_consume'>线下消费金额</text>
+      </view>
+    </view>
+    <view class='list_bottom'>
+      <view class='gift_number'>剩余{{item.stock}}个</view>
+      <view class='gift_btn'>
+        <text class='btn_remove' bindtap='removeCoupon' data-id='{{item.id}}'>删除</text>
+        <text class='btn_give' bindtap='giveCoupon' data-id='{{item.id}}'>转赠</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无礼包</view>
+
+<!-- 转正弹出的遮罩和二维码 -->
+<block wx:if="{{flag}}">
+  <image class='image_code' wx:if='{{upload_domain&&imgUrl}}' src='{{upload_domain}}{{imgUrl}}' bindtap='cancelImg'></image>
+</block>
+<view class="zhezhao" wx:if="{{flag}}" bindtap='cancelImg'></view>
+
+
+<!-- 轮询弹出的遮罩和商家需要支付返佣的信息 -->
+<block wx:if="{{moneyFlag}}">
+  <view class='info_wrap'>
+    <view style='font-size:30rpx;text-align:center;background:#1b82d1;color:#fff;padding:25rpx 0'>礼包返佣信息</view>
+
+    <view class='market_wrap'>
+      <image wx:if='{{timeData.user_info.picture}}' src='{{timeData.user_info.picture}}'></image>
+      <view class='market_title'>
+        <view>{{timeData.user_info.name}}</view>
+        <text>领取人</text>
+      </view>
+    </view>
+
+    <view class='market_wrap' wx:if='{{timeData.has_rebate==1}}'>
+      <image src='{{timeData.rebate_info.user.picture}}'></image>
+      <view class='market_title'>
+        <view>{{timeData.rebate_info.user.name}}</view>
+        <text>返佣人</text>
+      </view>
+    </view>
+
+    <view style='margin-left:30rpx;font-size:30rpx;' wx:if='{{timeData.has_rebate==1}}'>需支付金额 ： {{timeData.rebate_info.amount}}</view>
+
+    <view wx:if='{{timeData.has_rebate==1}}'>
+      <radio-group class="radio-group" bindchange="radioChange" style='margin-top:30rpx;display:flex;justify-content:space-around;color:rgba(51,51,51,1);font-size:30rpx;'>
+        <label class="radio" >
+          <radio value="common" name='pay' checked="{{true}}"/>余额支付
+        </label>
+        <label class="radio" wx:if='{{storeId==""}}'>
+          <radio value="extension" name='pay' checked="{{false}}"/>微信支付
+        </label>
+      </radio-group>
+    </view>
+
+    <view class='pay_wrap' wx:if='{{timeData.has_rebate==1}}'>
+      <view class='pay' bindtap='payMoney' data-id='{{timeData.order_id}}'>支付</view>
+      <view class='cancle' bindtap='cancleFlag'>取消</view>
+    </view>
+
+    <view class='pay_wrap' wx:if='{{timeData.has_rebate==0}}'>
+      <view class='pay' bindtap='payMoney' data-id='{{timeData.order_id}}'>确定</view>
+          <view class='cancle' bindtap='cancleFlag'>取消</view>
+    </view>
+
+    <!-- <view class='market_wrap' wx:for='{{allData}}' wx:key='{{index}}'>
+      <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+      <view class='market_title'>
+        <view>{{item.name}}</view>
+        <text>领取时间：{{item.create_time}}</text>
+      </view>
+      <view class='coupon'>卡券 : {{item.coupon_name}}</view>
+    </view> -->
+  </view>
+</block>
+<view class="zhezhao" wx:if="{{moneyFlag}}"></view>
+
+<view class='btn'>
+  <view class='btn_download' bindtap='goNewGifts'>新建礼包</view>
+</view>

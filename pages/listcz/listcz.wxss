@@ -1,0 +1,107 @@
+/* pages/mywallet/mywallet.wxss */
+
+.wallet_wrap {
+  background: #1b82d1;
+  padding-bottom: 30rpx;
+}
+
+.wallet_title {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  padding-top: 3+0rpx;
+}
+
+.wallet_money {
+  text-align: center;
+  font-size: 60rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+  padding-top: 20rpx;
+}
+
+.wallet_btn {
+  padding-top: 50rpx;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 50rpx;
+}
+
+.btn_recharge {
+  width: 300rpx;
+  height: 88rpx;
+  border: 1px solid #999;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 88rpx;
+    box-sizing: border-box;
+}
+
+.btn_cash {
+  width: 300rpx;
+  height: 88rpx;
+  border: 1px solid #999;
+  text-align: center;
+  line-height: 88rpx;
+  border-radius: 50rpx;
+  box-sizing: border-box;
+}
+
+.btn_recharge image {
+  width: 43rpx;
+  height: 43rpx;
+  vertical-align: middle;
+}
+
+.btn_recharge text {
+  margin-left: 30rpx;
+  color: #fff;
+}
+
+.btn_cash image {
+  width: 47rpx;
+  height: 44rpx;
+  vertical-align: middle;
+}
+
+.btn_cash text {
+  margin-left: 30rpx;
+  color: #fff;
+}
+.record{
+  width: 94%;
+  margin: 0 auto;
+  padding: 20rpx 0 ;
+}
+
+.record_list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list_recharge{
+  font-size:24rpx;
+font-family:PingFang-SC-Medium;
+font-weight:500;
+color:rgba(51,51,51,1);
+  display: flex;
+  align-items: center;
+}
+
+.list_number{
+  font-size:24rpx;
+font-family:PingFang-SC-Medium;
+font-weight:500;
+color:rgba(254,1,43,1);
+
+  display: flex;
+  align-items: center;
+}
+.list_lefe{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

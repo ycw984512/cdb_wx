@@ -1,0 +1,15 @@
+<view class='points_wrap'>
+  <view class='{{index==activeIndex?"active":"points_list"}}' data-index='{{index}}'  wx:for = "{{pointsData}}"  data-id='{{item.id}}'   wx:key="{{index}}" bindtap='chooseTap'>
+    <view class='points_amount'>
+      {{item.amount}}元
+    </view>
+    <view class='points_integral'>
+       {{item.integral}}积分
+    </view>
+  </view>
+
+  <view class='submitBtn' bindtap='submitBtn'>
+  立即充值
+</view>
+
+</view>

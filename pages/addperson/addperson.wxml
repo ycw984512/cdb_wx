@@ -1,0 +1,27 @@
+<view class='header'>
+  <view class='header_image'>
+    <image wx:if='{{personUrl}}' src='{{personUrl}}'></image>
+  </view>
+  <view class='header_title'>用充店宝扫一扫，添加店员</view>
+</view>
+
+
+
+<block>
+
+  <view class='market_wrap' wx:for="{{personList}}" wx:key="{{index}}">
+    <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+    <view class='market_title'>
+      <view>{{item.name}}</view>
+      <text>领取时间：{{item.create_time}}</text>
+    </view>
+    <view class='market_remove' bindtap='removePerson' data-id='{{item.id}}'>删除</view>
+  </view>
+
+
+</block>
+
+
+<view style='text-align:center;color:#999999;font-size:24rpx;margin-top:20rpx;'>
+  没有更多了
+</view>

@@ -1,0 +1,96 @@
+<view class='CouponList_wrap'>
+  <image wx:if='{{upload_domain&&storeData.logo}}' src='{{upload_domain}}{{storeData.logo}}'></image>
+</view>
+
+
+<!-- <view class='use_instructions'>
+  <view class='user_title'>使用须知</view>
+  <view class='user_point'>
+    <text>{{storeData.introduce}}</text>
+  </view>
+
+
+</view>
+
+<view class='validity'>有效日期</view>
+
+<view class='validity_data'>{{storeData.start_hours}} ～ {{storeData.end_hours}}</view> -->
+
+<view class='settingItem' style='justify-content:space-between;'>
+  <view>
+    <image src='../../static/images/shouye.png' style='width:38rpx;height:38rpx;' class='icon' />
+    <text class='caption'>{{storeData.name}}</text>
+  </view>
+
+</view>
+
+<view class='settingItem'>
+  <image src='../../static/images/dizhi.png' style='width:38rpx;height:38rpx;' class='icon' />
+  <text class='caption'>{{storeData.address}}</text>
+
+    <view class='daohang' bindtap='openLocation' data-longitude='{{storeData.longitude}}' data-latitude='{{storeData.latitude}}' data-name='{{storeData.name}}' data-address='{{storeData.address}}'>
+    导航
+  </view>
+</view>
+
+<view class='settingItem'>
+  <image src='../../static/images/time.png' style='width:38rpx;height:38rpx;' class='icon' />
+  <text class='caption'>营业时间 :{{storeData.start_hours}} - {{storeData.end_hours}} </text>
+
+</view>
+
+<view class='settingItem' bindtap='goPhone' data-tel='{{storeData.store_mobile}}'>
+  <image src='../../static/images/dianhua1.png' style='width:38rpx;height:38rpx;' class='icon' />
+  <text class='caption'>{{storeData.store_mobile}}({{storeData.contacts}})</text>
+  <image src='../../static/images/right.png' mode='widthFix' class='icon_img' />
+</view>
+
+<view class='settingItem'>
+  <image src='../../static/images/mdjj.png' style='width:38rpx;height:38rpx;' class='icon' />
+  <text class='caption'>门店简介</text>
+    <view class='user_point1'>
+    <text>{{storeData.introduce}}</text>
+  </view>
+</view>
+
+
+<view class='index_image'>
+  <view style='text-align:center;font-size:26rpx;margin:20rpx 0'>- 门店图片 -</view>
+  <view class='image_wrap'>
+    <image mode='widthFix' wx:if='{{upload_domain&&item}}' src='{{upload_domain}}{{item}}' wx:for='{{storeData.exhibition}}' wx:key='{{index}}'></image>
+  </view>
+</view>
+
+<!-- <view class='Coupon'>
+
+  <view class='Coupon_img'>
+    <image wx:if="{{promotionDetailData.store_logo}}" src='{{upload_domain}}{{promotionDetailData.store_logo}}'></image>
+  </view>
+  <view class='Coupon_name'>
+    <view style='font-size:30rpx;font-weight:700;' bindtap='goStoreDetil' data-id='{{promotionDetailData.store_id}}'>{{promotionDetailData.store_name}}</view>
+    <view style='font-size:24rpx;color:#666;margin-top:10rpx;'>营业时间: {{promotionDetailData.start_hours}}-{{promotionDetailData.end_hours}}</view>
+    <view style='font-size:24rpx;color:#999;margin-top:10rpx'>{{promotionDetailData.category_name_p}} | {{promotionDetailData.category_name_s}}</view>
+    <view class='Coupon_money' style='margin-top:10rpx'>
+      <view class='bookMark' data-collection='{{collection_status}}' data-store_id='{{promotionDetailData.store_id}}' bindtap='goCollection'>
+        <image src='../../static/images/wujiaoxing.png'></image>
+        <text class='bookMark_title' wx:if="{{collection_status==0}}">收藏店铺</text>
+        <text class='bookMark_title' wx:else>已收藏</text>
+      </view>
+      <view style='background:#4EA8FE;margin-left:10rpx;' data-id='{{promotionDetailData.store_id}}' bindtap='goStoreDetilPro'>全部优惠券</view>
+      <view style='background:#F38F00;margin-left:10rpx;' data-id='{{promotionDetailData.store_id}}' bindtap='goStoreDetil'>进店看看</view>
+    </view>
+
+  </view>
+
+
+</view> -->
+
+
+
+<!-- <view class='btn'>
+  <view class='btn_download' data-id='{{id}}' bindtap='download'>立即领取</view>
+</view> -->
+
+<view class="backindex" bindtap='backindex'>
+  <image src="/static/images/backindex.png"></image>
+</view>

@@ -1,0 +1,70 @@
+page{
+  background: #F6F6F6;
+}
+view{
+  box-sizing: border-box;
+}
+.form-groun{
+  width: 100%;
+  padding: 25rpx;
+  background: #fff;
+  font-size: 30rpx;
+  color: #384053;
+  margin-bottom: 25rpx;
+  position: relative;
+  padding-bottom: 50rpx
+}
+.jytit{
+  padding-bottom: 20rpx;
+}
+.form-groun textarea{
+  width: 100%;
+  height: 180rpx;
+}
+.form-groun text{
+  position: absolute;
+  right: 20rpx;
+  bottom: 10rpx;
+}
+.list{
+  width: 100%;
+  padding: 0 25rpx;
+  background: #fff;
+  font-size: 30rpx;
+  color: #384053;
+}
+.listtxt{
+  padding: 25rpx 0;
+  width: 100%;
+  border-bottom: 1rpx solid #F2F2F2;
+  display: flex;
+  align-items: center;
+}
+.listtxt:last-child{
+  border: none;
+}
+.listtxt view:first-child{
+  width: 20%;
+  text-align: right;
+  padding-right: 20rpx;
+}
+.listtxt view:last-child{
+  width: 80%;
+}
+button::after{
+  border: none;
+}
+button{
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 20%;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  color: #fff;
+}
+.subbtn{
+  background: #1b82d1;
+}
+.disbtn{
+  background: #D3D3D3;
+}

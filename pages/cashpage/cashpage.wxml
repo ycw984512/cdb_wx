@@ -1,0 +1,19 @@
+<view class="zhyue">
+  <view>账户余额：</view>
+  <view class='all' bindtap='allmoney'>
+    <view style='padding-left:0'>￥{{allMoney}}</view>
+    <view>全部提现</view>
+  </view>
+</view>
+
+
+
+
+<view class='form-group'>
+  <view>提现金额：</view>
+  <view>
+    <input type='digit' name="txmoney" placeholder='请输入提现金额' value='{{inputMoney}}' bindinput='moneyInput'></input>
+  </view>
+</view>
+<view class='rate' wx:if='{{!inputMoney==""}}'>额外扣除{{rateMoney}}服务费 ,  (费率{{rate}}%) , 实际到账<text style='color:red'> {{realMoney}} </text>元</view>
+<button bindtap='submit' hover-class='none'>提交</button>

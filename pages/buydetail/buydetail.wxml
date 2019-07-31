@@ -1,0 +1,150 @@
+<wxs src="../../common/num.wxs" module="m1" />
+<wxs src="../../common/num1.wxs" module="m2" />
+
+
+<view class='wrap'>
+  <view class='new_coupon'>
+    <image style='width:100%;height:100%' src='/static/images/buylist.png'></image>
+    <view class='top_left'>
+      <view class='top_left_img'>
+        <image wx:if='{{upload_domain&&promotionDetailData.logo}}' src='{{upload_domain}}{{promotionDetailData.logo}}'></image>
+      </view>
+      <view class='top_left_name'>
+        <view class='top_left_name_goods'>{{promotionDetailData.name}}</view>
+        <view class='top_left_name_store'>【
+          <view>{{promotionDetailData.store_name}}</view>】
+          <view wx:if='{{promotionDetailData.distance>1}}'> {{m1.getFix(promotionDetailData.distance)}}km</view>
+          <view wx:else> {{promotionDetailData.distance*1000}}m</view>
+        </view>
+        <view class='top_left_name_rate'>
+          <view>锁客返佣{{promotionDetailData.rebate_commission}}%</view>
+          <view>推广返佣{{promotionDetailData.promotion_commission}}%</view>
+        </view>
+      </view>
+    </view>
+    <view class='top_right'>
+      <view class='top_right_wrap'>
+        <view>体验 / 抢购价</view>
+        <view>{{m2.getFilter(promotionDetailData.buying_price)}}
+          <text>元</text>
+        </view>
+        <view>原价
+        <span style='text-decoration:line-through;text-decoration-color:gray'>{{m2.getFilter(promotionDetailData.original_price)}}元</span> </view>
+
+      </view>
+    </view>
+    <view class='bottom_left'>
+      <view>有效期 : {{promotionDetailData.start_time}} - {{promotionDetailData.end_time}}</view>
+    </view>
+    <view class='bottom_right'>
+      <view>剩余 ： {{promotionDetailData.stock}}张</view>
+    </view>
+  </view>
+
+</view>
+
+
+
+<!-- <view class='CouponList_wrap'>
+  <view class='CouponList'>
+    <view class='CouponList_img'>
+      <image wx:if="{{promotionDetailData.logo}}" src='{{upload_domain}}{{promotionDetailData.logo}}'></image>
+    </view>
+    <view class='CouponList_name'>
+      <view style='font-size:30rpx;font-weight:700;'>{{promotionDetailData.name}}</view>
+      <view style='font-size:26rpx;color:#666;'>{{promotionDetailData.store_name}}</view>
+      <view style='font-size:24rpx;color:#999'>剩余{{promotionDetailData.stock}}张</view>
+    </view>
+    <view class='CouponList_rate'>
+    </view>
+    <view class='CouponList_money'>
+
+      <view style='margin-left:16rpx;'>
+        <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>抢购价 : </text>
+        <text style='font-size:28rpx;color:#FE012B;font-weight:700;'>{{promotionDetailData.buying_price}}元</text>
+      </view>
+
+      <view style='font-size:24rpx;color:#999999;text-align:right;font-weight:500;text-decoration:line-through'>原价: {{promotionDetailData.original_price}}元</view>
+
+
+      <view style='display:flex; justify-content: flex-end;' data-longitude='{{promotionDetailData.longitude}}' data-latitude='{{promotionDetailData.latitude}}' data-id='{{promotionDetailData.store_id}}'>
+        <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+      <block>
+          <view style='font-size:24rpx;color:#999' wx:if='{{promotionDetailData.distance>1}}'>
+            {{m1.getFix(promotionDetailData.distance)}}km
+          </view>
+          <view style='font-size:24rpx;color:#999' wx:else>
+            {{promotionDetailData.distance*1000}}m
+          </view>
+        </block>
+      </view>
+    </view>
+
+  </view>
+  <view class='border_bottom'></view>
+  <view class='rate'  wx:if='{{is_store==1}}'>
+    <view class='extension_rate'>
+      推广返佣{{promotionDetailData.promotion_commission}}%
+    </view>
+    <view class='lock_rate'>
+      锁客返佣{{promotionDetailData.rebate_commission}}%
+    </view>
+  </view>
+</view> -->
+
+
+<view class='use_instructions'>
+  <view class='user_title'>使用须知</view>
+  <view class='user_point'>
+    <text>{{promotionDetailData.instructions}}</text>
+  </view>
+
+
+</view>
+
+<!-- <view class='validity'>有效日期</view>
+
+<view class='validity_data'>{{promotionDetailData.start_time}} ～ {{promotionDetailData.end_time}}</view> -->
+
+
+
+<view class='Coupon'>
+
+  <view class='Coupon_img'>
+    <image wx:if="{{promotionDetailData.store_logo}}" src='{{upload_domain}}{{promotionDetailData.store_logo}}'></image>
+  </view>
+  <view class='Coupon_name'>
+    <view style='font-size:30rpx;font-weight:700;' bindtap='goStoreDetil' data-id='{{promotionDetailData.store_id}}'>{{promotionDetailData.store_name}}</view>
+    <view style='font-size:24rpx;color:#666;margin-top:10rpx;'>营业时间: {{promotionDetailData.start_hours}}-{{promotionDetailData.end_hours}}</view>
+    <view style='font-size:24rpx;color:#999;margin-top:10rpx'>{{promotionDetailData.category_name_p}} | {{promotionDetailData.category_name_s}}</view>
+    <view class='Coupon_money' style='margin-top:10rpx'>
+      <view class='bookMark' data-collection='{{collection_status}}' data-store_id='{{promotionDetailData.store_id}}' bindtap='goCollection'>
+        <image src='../../static/images/wujiaoxing.png'></image>
+        <text class='bookMark_title' wx:if="{{collection_status==0}}">收藏店铺</text>
+        <text class='bookMark_title' wx:else>已收藏</text>
+      </view>
+      <view style='background:#4EA8FE;margin-left:10rpx;' data-id='{{promotionDetailData.store_id}}' bindtap='goStoreDetilPro'>全部优惠券</view>
+      <view style='background:#F38F00;margin-left:10rpx;' data-id='{{promotionDetailData.store_id}}' bindtap='goStoreDetil'>进店看看</view>
+    </view>
+
+  </view>
+
+
+</view>
+
+<view class='btn' wx:if='{{isHidden==1?false:true}}'>
+  <view class='btn_download' data-id='{{id}}' bindtap='download' wx:if='{{is_store==1}}'>立即下载</view>
+</view>
+
+
+<view class="zhezhao" hidden='{{flag}}'></view>
+<view class="kcrzxy" hidden='{{flag}}'>
+  <view class="kcrzxyhd">卡券数量</view>
+
+  <input bindinput='listerInput' bindconfirm="queren" value='{{addNumber}}' type='number' placeholder='请输入发布优惠券的数量' style='border:1px solid #999;padding:20rpx 20rpx;' placeholder-class='holder'></input>
+  <view style='margin:10rpx;font-size:28rpx;color:red;'>下载优惠券需要的积分为 : {{addNumber*pointsPrice}}</view>
+  <view style='display:flex;justify-content:space-around'>
+    <view bindtap="quxiao" class="quxiao">取消</view>
+    <view bindtap="queren" class="queren">确定</view>
+  </view>
+</view>

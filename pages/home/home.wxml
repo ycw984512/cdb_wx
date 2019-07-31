@@ -1,0 +1,40 @@
+<import src='template1.wxml' />
+<view class="user-info">
+  <image src='/static/images/bg.png' style='width:100%;height:400rpx;'></image>
+  <view class='use_main'>
+    <view class="user-info">
+      <image class="avatar" src="{{avatarUrl}}"></image>
+      <text class="name">{{nickName}}</text>
+    </view>
+    <!--wxml-->
+    <!-- 需要使用 button 来授权登录 -->
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </view>
+  <view class='juchi_wrap' wx:if='{{storeId==""}}'>
+    <image class='juchi' src='/static/images/juchi.png'></image>
+  </view>
+  <view class='money_wrap' wx:if='{{storeId==""}}'> 
+    <view class='money_jinbi' bindtap='goMyWallet'>
+      <image src='/static/images/jinqian.png' style='width:42rpx;height:45rpx;vertical-align: middle'></image>
+      <text style='color:rgba(102,102,102,1);margin-left:20rpx;'>余额:</text><text style='color:#FE012B;margin-left:20rpx;'>¥{{balance}}</text>
+    </view>
+    <view class='money_jifen' bindtap='goMyPoints'>
+      <image src='/static/images/jinbi.png' style='width:42rpx;height:45rpx;vertical-align: middle;margin-left:30rpx;'></image>
+      <text style='#666666;margin-left:20rpx;'>积分:</text>
+      <text style='color:#FF9C00;margin-left:20rpx;'>{{integral}}</text>
+    </view>
+  </view>
+</view>
+
+<template  is='settingItem' data="{{caption:'我下载的优惠券',imgUrl:'/static/images/icon1.png',type:1}}" />
+<template  wx:if='{{storeId==""}}' is='settingItem' data="{{caption:'我的推广码',imgUrl:'/static/images/icon2.png',type:2}}" />
+<template  wx:if='{{storeId==""}}' is='settingItem' data="{{caption:'推广记录',imgUrl:'/static/images/icon6.png',type:12}}" />
+<template  wx:if='{{storeId==""}}' is='settingItem' data="{{caption:'我的收藏',imgUrl:'/static/images/icon3.png',type:3}}" />
+<template  wx:if='{{storeId==""}}' is='settingItem' data="{{caption:'添加员工',imgUrl:'/static/images/icon4.png',type:4}}" />
+<template is='settingItem' data="{{caption:'我的门店',imgUrl:'/static/images/icon5.png',type:5}}" />
+<template  wx:if='{{storeId==""}}' is='settingItem' data="{{caption:'门店资料',imgUrl:'/static/images/icon6.png',type:6}}" />
+<template  wx:if='{{storeId==""}}' is='settingItem' data="{{caption:'卡券记录',imgUrl:'/static/images/icon7.png',type:7}}" />
+<!-- <template is='settingItem' data="{{caption:'投诉建议',imgUrl:'/static/images/suggest.png',type:8}}" />
+<template is='settingItem' data="{{caption:'帮助中心',imgUrl:'/static/images/icon8.png',type:9}}" /> -->
+<template  wx:if='{{storeId==""}}' is='settingItem' data="{{caption:'联系我们',imgUrl:'/static/images/icon9.png',type:10}}" />
+<template is='settingItem' data="{{caption:'切换到游客端',imgUrl:'/static/images/icon1.png',type:11}}" />

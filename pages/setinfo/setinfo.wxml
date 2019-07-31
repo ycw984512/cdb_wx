@@ -1,0 +1,142 @@
+<block wx:if='{{state==1}}'>
+  <view style='margin-top:300rpx;color:#999;text-align:center;font-size:36rpx;'>后台正在审核中，请耐心等待!</view>
+</block>
+
+<block wx:if='{{state==2}}'>
+  <view style='margin-top:300rpx;color:#999;text-align:center;font-size:36rpx;'>审核已通过，请前往商家端发布优惠券吧!</view>
+</block>
+
+<block wx:if='{{state==3}}'>
+  <view style='color:#999;text-align:center;font-size:36rpx;margin:50rpx 0;'>审核已拒绝，修改入驻信息重新提交审核吧!</view>
+  <view style='color:red;text-align:center;font-size:36rpx;margin:0rpx 0 30rpx;'>拒绝理由 ： {{reject_reason}}</view>
+
+</block>
+
+<block wx:if='{{state==0||state==3}}'>
+  <view class='uploadLogo'>
+
+    <view class='uploadLogo_btn' bindtap='chooseLogo' wx:if="{{logoBtn}}" style='border-radius:50%;background:#E1E1E1;color:#fff;'>
+      Logo
+      <image src='/static/images/xiangji.png'></image>
+    </view>
+    <block wx:else>
+      <view class='uploadLogo_img1'>
+        <image wx:if="{{logoUrl}}" src='{{upload_domain}}{{logoUrl}}' bindtap='chooseLogo'></image>
+        <!-- <image wx:if="{{logoUrl}}" src='{{upload_domain}}{{logoUrl}}'  bindtap='scaleImage'></image>
+    <button size='mini' type='warn' bindtap='chooseLogo'>重新选择</button> -->
+      </view>
+    </block>
+  </view>
+  <view class='uploadPerson'>
+    <view class='uploadPerson_title'>
+      <text style='color:#E9353E;'>* </text>推广码 ： </view>
+    <input class='uploadPerson_input'  placeholder-class='holderClass' bindinput='codeTap' value='{{extension_code}}'>
+    </input>
+  </view>
+  <view class='uploadPerson'>
+    <view class='uploadPerson_title'>
+      <text style='color:#E9353E;'>* </text>门店联系人 ： </view>
+    <input class='uploadPerson_input' placeholder='请输入内容' placeholder-class='holderClass' bindinput='personTap' value='{{personValue}}'>
+    </input>
+  </view>
+  <view class='uploadPhone'>
+    <view class='uploadPhone_title'>
+      <text style='color:#E9353E;'>* </text>手机号码 : </view>
+    <input class='uploadPhone_input' placeholder='请输入内容' type='number' placeholder-class='holderClass' bindinput='phoneTap' value='{{phoneValue}}'></input>
+  </view>
+  <view class='uploadLocation'>
+
+    <view class='uploadLocation_title'>
+      <text style='color:#fff;'>* </text>门店位置 : </view>
+    <image src='/static/images/location_active.png' style='width:16rpx;height:25rpx;margin-right:5rpx;' bindtap='chooseAddress'></image>
+    <view bindtap='chooseAddress' style='color:red;'> 点击自动定位</view>
+  </view>
+
+  <view class='uploadAddress'>
+    <view class='uploadAddress_title'>
+      <text style='color:#E9353E;'>* </text>详细地址 : </view>
+    <input class='uploadAddress_input' placeholder='点击自动定位选择位置' placeholder-class='holderClass' bindinput='addressLocation' value='{{address}}'> </input>
+  </view>
+
+  <view class='uploadAddress'>
+    <view class='uploadAddress_title'>
+      <text style='color:#E9353E;'>* </text>门店名称 : </view>
+    <input class='uploadAddress_input' placeholder='请输入内容' placeholder-class='holderClass' bindinput='addressTap' value='{{addressValue}}'></input>
+  </view>
+  <view class='uploadTel'>
+    <view class='uploadTel_title'>
+      <text style='color:#E9353E;'>* </text>门店电话 : </view>
+    <input class='uploadTel_input' placeholder='请输入内容' type='number' placeholder-class='holderClass' bindinput='telTap' value='{{telValue}}'></input>
+  </view>
+  <view class='uploadIndustry'>
+    <view class='uploadIndustry_title'>
+      <text style='color:#E9353E;'>* </text>所属行业 : </view>
+    <select class="isSelect" prop-array='{{selectArray}}' showText="{{showTextOne}}" bind:myget='getDate'></select>
+    <select class="isSelect" prop-array='{{lowerSelectArray}}' nowText="{{nowText}}" showText="{{showTextTwo}}" style="margin-left:20rpx;" bind:myget='getLowerDate'></select>
+  </view>
+  <view class='uploadLicense'>
+    <view class='uploadLicense_title'>
+      <text style='color:#E9353E;'>* </text>营业执照 : </view>
+    <view class='uploadLogo_btn1' bindtap='chooseLicense' wx:if="{{licenseBtn}}">
+      <image src='../../static/images/xiangji2.png' mode='widthFix'></image>
+      <text>上传营业执照</text>
+    </view>
+    <view class='uploadLogo_img' wx:else>
+      <image wx:if="{{licenseUrl}}" src='{{upload_domain}}{{licenseUrl}}' bindtap='chooseLicense'></image>
+      <!-- <image wx:if="{{licenseUrl}}" src='{{upload_domain}}{{licenseUrl}}'  bindtap='scaleLicenseImage'></image>
+    <button size='mini' type='warn' bindtap='chooseLicense'>重新选择</button> -->
+    </view>
+  </view>
+  <view class='uploadId'>
+    <view class='uploadId_title'>
+      <text style='color:#E9353E;'>* </text>身份证件 : </view>
+
+    <view class='uploadLogo_btn2' bindtap='LicensePositive' wx:if="{{idPositiveBtn}}">
+      <image src='../../static/images/shenfenzheng.png'></image>
+      <view>证件照正面</view>
+    </view>
+    <view class='uploadLogo_img uploadId_positive' wx:else>
+      <image src='{{upload_domain}}{{idPositiveUrl}}' bindtap='LicensePositive'></image>
+      <!-- <image  wx:if="{{idPositiveUrl}}" src='{{upload_domain}}{{idPositiveUrl}}'  bindtap='scalePositiveImage'></image>
+      <button size='mini' type='warn' bindtap='LicensePositive'>重新选择</button> -->
+    </view>
+
+    <view style='margin-left:10rpx;'>
+      <view class='uploadLogo_btn3' bindtap='LicenseReverse' wx:if="{{idReverseBtn}}">
+        <image src='../../static/images/shenfenzheng.png'></image>
+        <view>证件照反面</view>
+      </view>
+      <view class='uploadLogo_img uploadId_reverse' wx:else>
+        <image src='{{upload_domain}}{{idReverseUrl}}' bindtap='LicenseReverse'></image>
+        <!-- <image wx:if="{{idReverseUrl}}" src='{{upload_domain}}{{idReverseUrl}}'  bindtap='scaleReverseImage'></image>
+      <button size='mini' type='warn' bindtap='LicenseReverse'>重新选择</button> -->
+      </view>
+    </view>
+
+  </view>
+  <view class='agreement'>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <radio value="isChecked" />
+    </radio-group>
+    <view>我已阅读并同意
+      <text style='color:red;' bindtap='showXieYi'>《平台入驻协议》</text>
+    </view>
+  </view>
+  <view class='submitBtn' bindtap='submitBtn'>
+    提交审核
+  </view>
+
+
+  <view class="zhezhao" hidden='{{!xieyi}}'></view>
+  <view class="kcrzxy" hidden='{{!xieyi}}'>
+    <view class="kcrzxyhd">平台入驻协议</view>
+    <scroll-view scrollY class="kcrzxybd" style="height: 600rpx;">
+      <rich-text nodes="{{ptxx}}"></rich-text>
+    </scroll-view>
+    <view bindtap="queren" class="queren">确定</view>
+  </view>
+</block>
+
+<view class="backindex" bindtap='backindex'>
+  <image src="/static/images/backindex.png"></image>
+</view>

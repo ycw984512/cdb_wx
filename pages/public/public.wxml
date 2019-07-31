@@ -1,0 +1,6 @@
+<view class='public'>
+    <view class='public_list' wx:for="{{publicData}}" data-type='{{item.type}}'  wx:key="{{index}}"  bindtap='goType'>
+      <image src='{{item.imgUrl}}' ></image>
+      <text>{{item.title}}</text>
+    </view>
+</view>

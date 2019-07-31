@@ -1,0 +1,13 @@
+<view class='xiugai'>
+    <image src='/static/images/xiugai.png'></image>
+    <view>修改密码</view>
+    <text>></text>
+</view> 
+
+<view class='change'>
+    <image src='/static/images/qiehuan.png'></image>
+    <view>切换到游客端</view>
+    <text>></text>
+</view> 
+
+<view class='btn' bindtap='submitBtn'>退出登录</view>

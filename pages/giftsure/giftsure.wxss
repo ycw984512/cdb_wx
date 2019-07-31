@@ -1,0 +1,47 @@
+.market_wrap {
+  width: 94%;
+  margin: 30rpx auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.market_wrap image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.market_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+
+.market_title view {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.market_title text {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+
+.submitBtn{
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #fff;
+  text-align: center;
+  background: #1b82d1;
+  margin: 80rpx auto;
+  border-radius: 50rpx;
+  margin-bottom: 100rpx;
+
+}

@@ -1,0 +1,32 @@
+<view class='wallet_wrap'>
+  <view class='wallet_title'>我的积分</view>
+  <view class='wallet_money'>{{integral}}</view>
+</view>
+
+
+<block wx:if="{{pointsData.length>0}}">
+  <block wx:for="{{pointsData}}" wx:key="{{index}}">
+    <view class='record' style='border-bottom:1px solid #ccc;' wx:if="{{item.type==2}}">
+      <view class='record_list'>
+        <view class='list_lefe'>
+          <text class='list_recharge'>{{item.mode}}</text>
+          <text class='list_recharge' style='margin-top:10rpx;'>{{item.create_time}}</text>
+        </view>
+        <text class='list_number'>-{{item.integral}}</text>
+      </view>
+    </view>
+
+
+    <view class='record' style='border-bottom:1px solid #ccc;' wx:if="{{item.type==1}}">
+      <view class='record_list'>
+        <view class='list_lefe'>
+          <text class='list_recharge'>{{item.mode}}</text>
+          <text class='list_recharge' style='margin-top:10rpx;'>{{item.create_time}}</text>
+        </view>
+        <text class='list_number' style="color:#2EC377;">+{{item.integral}}</text>
+      </view>
+    </view>
+
+  </block>
+</block>
+  <view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无数据</view>

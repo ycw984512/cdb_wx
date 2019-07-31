@@ -1,0 +1,361 @@
+page {
+  font-size: 28rpx;
+}
+
+page input {
+  border-bottom: 1px solid #e1e1e1;
+  flex: 1;
+  margin-right: 40rpx;
+}
+
+.uploadLogo {
+  display: flex;
+  align-items: center;
+  padding-top: 30rpx;
+  border-top: 1px solid #ccc;
+  justify-content: center;
+}
+
+.uploadLogo_title {
+  font-size: 28rpx;
+}
+
+radio {
+  width: 38rpx;
+}
+
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 26rpx; /* 对勾大小 26rpx */
+  color: #fff; /* 对勾颜色 */
+  background: #4768f3;
+  border-color: #4768f3;
+}
+
+.uploadLogo_btn {
+  width: 180rpx;
+  height: 175rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.uploadLogo_btn image {
+  width: 39rpx;
+  height: 35rpx;
+  position: absolute;
+  bottom: 10rpx;
+  right: 8rpx;
+}
+
+.uploadLogo_img {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.uploadLogo_img1 image {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+}
+
+.uploadLogo_img image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.uploadLogo_img button {
+  width: 180rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  line-height: 80rpx;
+  margin-left: 20rpx;
+  background: #1b82d1;
+}
+
+.uploadPerson {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadPhone {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadLocation {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadLocation {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadAddress {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadTel {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadIndustry {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadLicense {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadId {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.uploadLogo_title, .uploadPerson_title, .uploadPhone_title,
+.uploadLocation_title, .uploadAddress_title, .uploadTel_title,
+.uploadIndustry_title, .uploadLicense_title, .uploadId_title {
+  width: 200rpx;
+  margin-left: 50rpx;
+}
+
+.holderClass {
+  margin-left: 20rpx;
+}
+
+.uploadId_positive {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadId_positive button {
+  margin: 10rpx 0 0 0;
+}
+
+.uploadId_reverse {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadId_reverse button {
+  margin: 10rpx 0 0 0;
+}
+
+.uploadLogo_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.agreement {
+  text-align: center;
+  margin: 50rpx 0 0 50rpx;
+  display: flex;
+  font-size: 30rpx;
+}
+
+.submitBtn {
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #fff;
+  text-align: center;
+  background: #1b82d1;
+  margin: 50rpx auto;
+  border-radius: 50rpx;
+  margin-bottom: 100rpx;
+}
+
+.uploadLogo_btn1, .uploadLogo_btn2, .uploadLogo_btn3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180rpx;
+  height: 175rpx;
+  border: 1px dashed #ccc;
+}
+
+.uploadLogo_btn1 image {
+  width: 59rpx;
+  height: 47rpx;
+}
+
+.uploadLogo_btn2 image {
+  width: 180rpx;
+  height: 200rpx;
+}
+
+.uploadLogo_btn3 image {
+  width: 180rpx;
+  height: 200rpx;
+}
+
+.kcrzxy {
+  width: 70%;
+  left: 50%;
+  top: 15%;
+  position: fixed;
+  transform: translate(-50%, 0);
+  background: #fff;
+  border-radius: 10px;
+  z-index: 999;
+}
+
+.kcrzxyhd {
+  text-align: center;
+  font-size: 30rpx;
+  background: #1b82d1;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.kcrzxybd {
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.queren {
+  position: relative;
+  height: 70rpx;
+  width: 30%;
+  left: 35%;
+  font-size: 30rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: white;
+  background: #1b82d1;
+  border-radius: 10rpx;
+  margin: 5px 0;
+}
+
+wx-button:active {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.6;
+}
+
+.zhezhao {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+}
+
+.coupon_name {
+  display: flex;
+  margin: 30rpx 20rpx 0 50rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.coupon_name2 {
+  display: flex;
+  margin: 30rpx 20rpx 0 20rpx;
+  justify-content: space-between;
+  padding-bottom: 15rpx;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.coupon_name view {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  height: 65rpx;
+  line-height: 65rpx;
+}
+
+.coupon_name input {
+  flex: 1;
+  height: 65rpx;
+  line-height: 65rpx;
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  color: #999;
+}
+
+.coupon_name textarea {
+  flex: 1;
+  width: 400rpx;
+  margin-top: 15rpx;
+  height: 200rpx;
+  padding-left: 30rpx;
+  color: #777;
+  font-size: 30rpx;
+}
+
+.uploadLicense11 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.uploadLogo_img11 image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.uploadLogo_img11 {
+  position: relative;
+  margin: 20rpx 0 0 20rpx;
+}
+
+.uploadLogo_img11  .uploadLogo_img11_chahao {
+  position: absolute;
+  top: -20rpx;
+  right: -16rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.uploadLogo_img11  .uploadLogo_img11_left {
+  position: absolute;
+  top: 52rpx;
+  left: -12rpx;
+  width: 55rpx;
+  height: 70rpx;
+}
+
+.uploadLogo_img11  .uploadLogo_img11_right {
+  position: absolute;
+  top: 52rpx;
+  right: -12rpx;
+  width: 55rpx;
+  height: 70rpx;
+}

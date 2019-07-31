@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "充店宝",
+  "usingComponents": {
+    "clearInput": "../../components/clearInput/clearInput"
+  }
+
+}

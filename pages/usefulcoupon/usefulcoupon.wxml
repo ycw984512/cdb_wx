@@ -1,0 +1,648 @@
+<!--pages/searchHotel/searchHotel.wxml-->
+<wxs src="../../common/num.wxs" module="m1" />
+<wxs src="../../common/num1.wxs" module="m2" />
+<!-- 顶部标题和选择市 -->
+<view class='pageHeader'>
+
+
+  <view class='top_wrap'>
+    <view class='order_contain'>
+      <view style='flex:1;margin-left:20rpx'>
+        <view class='header_tab'>
+          <block wx:for="{{stateList}}" wx:key="{{index}}">
+            <view bindtap='turnPage' data-index="{{index}}" hover-class='tab_item_hover' class="{{selectedIndex == index?'tab_item_selected':'tab_item_default'}}">
+              <text>{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+
+  <view class='tab_bar'>
+    <!-- 可使用 -->
+    <view wx:if="{{selectedIndex==0}}" class='tab_index'>
+
+      <block wx:if="{{userData.length>0}}">
+        <view class='CouponList_wrap' wx:for='{{userData}}' wx:key='{{index}}'>
+          <!-- 抢购券 -->
+
+          <view class='new_coupon' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetail'>
+            <image style='width:100%;height:100%' src='/static/images/buylist.png'></image>
+            <view class='top_left'>
+              <view class='top_left_img'>
+                <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+              </view>
+              <view class='top_left_name'>
+                <view class='top_left_name_goods'>{{item.name}}</view>
+                <view class='top_left_name_store'>【
+                  <view>{{item.store_name}}</view>】
+                  <view wx:if='{{item.distance>1}}'> {{m1.getFix(item.distance)}}km</view>
+                  <view wx:else>{{item.distance*1000}}m</view>
+                </view>
+              </view>
+            </view>
+            <view class='top_right'>
+              <view class='top_right_wrap'>
+                <view>体验 / 抢购价</view>
+                <view>{{m2.getFilter(item.buying_price)}}
+                  <text>元</text>
+                </view>
+                  <view>原价
+<span style='text-decoration:line-through;text-decoration-color:gray'>{{m2.getFilter(item.original_price)}}元</span> </view>
+              </view>
+            </view>
+            <view class='bottom_left'>
+              <view>有效期 : {{item.end_time}}</view>
+            </view>
+            <view class='bottom_right'>
+              <view>剩余 ： {{item.num}}张</view>
+            </view>
+          </view>
+
+          <!-- <view class='CouponList' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetail'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+              <view style='font-size:24rpx;color:#999'>剩余{{item.num}}张</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+              <view style='margin-left:16rpx;'>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>抢购价 : </text>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>{{item.buying_price}}元</text>
+              </view>
+
+              <view style='font-size:24rpx;color:#999999;text-align:right;font-weight:500;text-decoration:line-through'>原价: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+
+          <!-- 促销券 -->
+
+          <view class='new_coupon' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetailPro'>
+            <image style='width:100%;height:100%' src='/static/images/prolist.png'></image>
+            <view class='top_left'>
+              <view class='top_left_img'>
+                <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+              </view>
+              <view class='top_left_name'>
+                <view class='top_left_name_goods'>{{item.name}}</view>
+                <view class='top_left_name_store'>【
+                  <view>{{item.store_name}}</view>】
+                  <view wx:if='{{item.distance>1}}'> {{m1.getFix(item.distance)}}km</view>
+                  <view wx:else>{{item.distance*1000}}m</view>
+                </view>
+              </view>
+            </view>
+            <view class='top_right'>
+              <view class='top_right_wrap1'>
+                <view>价值</view>
+                <view>{{m2.getFilter(item.original_price)}}
+                  <text>元</text>
+                </view>
+              </view>
+            </view>
+            <view class='bottom_left'>
+              <view>有效期 : {{item.end_time}}</view>
+            </view>
+            <view class='bottom_right'>
+              <view>剩余 ： {{item.num}}张</view>
+            </view>
+          </view>
+          <!-- <view class='CouponList' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetailPro'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+              <view style='font-size:24rpx;color:#999'>剩余{{item.num}}张</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+              <view style='font-size:24rpx;color:#FE012B;text-align:right;font-weight:700;margin-bottom:20rpx;'>价值: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+
+          <view class='rate'>
+
+            <!-- 可使用与可支付合并判断 -->
+
+            <view class='extension_rate' bindtap='userd' data-id='{{item.id}}' data-time='{{item.start_time}}' wx:if='{{item.residual_is_pay==1}}'>
+              立即使用
+            </view>
+
+            <view class='extension_rate' bindtap='payCoupon' data-id='{{item.id}}' wx:if='{{item.residual_is_pay==0}}'>
+              立即支付
+            </view>
+
+            <!-- <button class="share-btn" open-type="share" data-id='{{item.id}}' data-couponid='{{item.coupon_id}}' data-code='{{item.code}}'> 分享卡券</button> -->
+            <view class="share-btn" data-store_name='{{item.store_name}}' bindtap='shareNumberTap' data-id='{{item.id}}' data-couponid='{{item.coupon_id}}' data-code='{{item.code}}'> 分享卡券</view>
+            <view class='remove_rate' bindtap='removeCoupon' data-id='{{item.id}}'>
+              删除卡券
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:else style='color:#999;text-align:center;margin-top:44rpx;'>暂无数据</view>
+
+
+    </view>
+
+    <!-- 已使用 -->
+    <view wx:if="{{selectedIndex==1}}" class='tab_index'>
+      <block wx:if="{{haveData.length>0}}">
+        <view class='CouponList_wrap' wx:for='{{haveData}}' wx:key='{{index}}'>
+          <!-- 抢购券 -->
+               <view class='new_coupon' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetail'>
+            <image style='width:100%;height:100%' src='/static/images/buylist.png'></image>
+            <view class='top_left'>
+              <view class='top_left_img'>
+                <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+              </view>
+              <view class='top_left_name'>
+                <view class='top_left_name_goods'>{{item.name}}</view>
+                <view class='top_left_name_store'>【
+                  <view>{{item.store_name}}</view>】
+                  <view wx:if='{{item.distance>1}}'> {{m1.getFix(item.distance)}}km</view>
+                  <view wx:else>{{item.distance*1000}}m</view>
+                </view>
+              </view>
+            </view>
+            <view class='top_right'>
+              <view class='top_right_wrap'>
+                <view>体验 / 抢购价</view>
+                <view>{{m2.getFilter(item.buying_price)}}
+                  <text>元</text>
+                </view>
+                  <view>原价
+<span style='text-decoration:line-through;text-decoration-color:gray'>{{m2.getFilter(item.original_price)}}元</span> </view>
+              </view>
+            </view>
+            <view class='bottom_left'>
+              <view>有效期 : {{item.end_time}}</view>
+            </view>
+            <view class='bottom_right'>
+              <view>剩余 ： {{item.num}}张</view>
+            </view>
+          </view>
+
+          <!-- <view class='CouponList' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetail'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+              <view style='font-size:24rpx;color:#999'>数量{{item.num}}张</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+              <view style='margin-left:16rpx;'>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>抢购价 : </text>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>{{item.buying_price}}元</text>
+              </view>
+
+              <view style='font-size:24rpx;color:#999999;text-align:right;font-weight:500;text-decoration:line-through'>原价: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+          <!-- 促销券 -->
+                 <view class='new_coupon' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetailPro'>
+            <image style='width:100%;height:100%' src='/static/images/prolist.png'></image>
+            <view class='top_left'>
+              <view class='top_left_img'>
+                <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+              </view>
+              <view class='top_left_name'>
+                <view class='top_left_name_goods'>{{item.name}}</view>
+                <view class='top_left_name_store'>【
+                  <view>{{item.store_name}}</view>】
+                  <view wx:if='{{item.distance>1}}'> {{m1.getFix(item.distance)}}km</view>
+                  <view wx:else> {{item.distance*1000}}m</view>
+                </view>
+              </view>
+            </view>
+            <view class='top_right'>
+              <view class='top_right_wrap1'>
+                <view>价值</view>
+                <view>{{m2.getFilter(item.original_price)}}
+                  <text>元</text>
+                </view>
+              </view>
+            </view>
+            <view class='bottom_left'>
+              <view>有效期 : {{item.end_time}}</view>
+            </view>
+            <view class='bottom_right'>
+              <view>剩余 ： {{item.num}}张</view>
+            </view>
+          </view>
+          <!-- <view class='CouponList' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetailPro'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+
+
+              <view style='font-size:24rpx;color:#FE012B;text-align:right;font-weight:700;margin-bottom:20rpx;'>价值: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+
+
+
+          <view class='rate'>
+
+            <!-- <view class='extension_rate' bindtap='userd' data-id='{{item.id}}' data-time='{{item.start_time}}'>
+              立即使用
+            </view>
+
+
+            <button class="share-btn" open-type="share" data-id='{{item.id}}' data-couponid='{{item.coupon_id}}' data-code='{{item.code}}'> 分享卡券</button> -->
+
+            <view class='remove_rate' bindtap='removeCoupon' data-id='{{item.id}}'>
+              删除卡券
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:else style='color:#999;text-align:center;margin-top:44rpx; '>暂无数据</view>
+
+
+    </view>
+
+    <!-- 已过期 -->
+    <view wx:if="{{selectedIndex==2}}" class='tab_index '>
+
+      <block wx:if="{{overData.length>0}}">
+        <view class='CouponList_wrap' wx:for='{{overData}}' wx:key='{{index}}'>
+          <!-- 抢购券 -->
+               <view class='new_coupon' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetail'>
+            <image style='width:100%;height:100%' src='/static/images/buylist.png'></image>
+            <view class='top_left'>
+              <view class='top_left_img'>
+                <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+              </view>
+              <view class='top_left_name'>
+                <view class='top_left_name_goods'>{{item.name}}</view>
+                <view class='top_left_name_store'>【
+                  <view>{{item.store_name}}</view>】
+                  <view wx:if='{{item.distance>1}}'>{{m1.getFix(item.distance)}}km</view>
+                  <view wx:else> {{item.distance*1000}}m</view>
+                </view>
+              </view>
+            </view>
+            <view class='top_right'>
+              <view class='top_right_wrap'>
+                <view>体验 / 抢购价</view>
+                <view>{{m2.getFilter(item.buying_price)}}
+                  <text>元</text>
+                </view>
+                  <view>原价
+<span style='text-decoration:line-through;text-decoration-color:gray'>{{m2.getFilter(item.original_price)}}元</span> </view>
+              </view>
+            </view>
+            <view class='bottom_left'>
+              <view>有效期 : {{item.end_time}}</view>
+            </view>
+            <view class='bottom_right'>
+              <view>剩余 ： {{item.num}}张</view>
+            </view>
+          </view>
+
+          <!-- <view class='CouponList' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetail'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+              <view style='font-size:24rpx;color:#999'>数量{{item.num}}张</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+              <view style='margin-left:16rpx;'>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>抢购价 : </text>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>{{item.buying_price}}元</text>
+              </view>
+
+              <view style='font-size:24rpx;color:#999999;text-align:right;font-weight:500;text-decoration:line-through'>原价: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+          <!-- 促销券 -->
+                 <view class='new_coupon' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetailPro'>
+            <image style='width:100%;height:100%' src='/static/images/prolist.png'></image>
+            <view class='top_left'>
+              <view class='top_left_img'>
+                <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+              </view>
+              <view class='top_left_name'>
+                <view class='top_left_name_goods'>{{item.name}}</view>
+                <view class='top_left_name_store'>【
+                  <view>{{item.store_name}}</view>】
+                  <view wx:if='{{item.distance>1}}'> {{m1.getFix(item.distance)}}km</view>
+                  <view wx:else>{{item.distance*1000}}m</view>
+                </view>
+              </view>
+            </view>
+            <view class='top_right'>
+              <view class='top_right_wrap1'>
+                <view>价值</view>
+                <view>{{m2.getFilter(item.original_price)}}
+                  <text>元</text>
+                </view>
+              </view>
+            </view>
+            <view class='bottom_left'>
+              <view>有效期 : {{item.end_time}}</view>
+            </view>
+            <view class='bottom_right'>
+              <view>剩余 ： {{item.num}}张</view>
+            </view>
+          </view>
+          <!-- <view class='CouponList' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetailPro'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+
+
+              <view style='font-size:24rpx;color:#FE012B;text-align:right;font-weight:700;margin-bottom:20rpx;'>价值: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+
+
+
+          <view class='rate'>
+
+            <!-- <view class='extension_rate' bindtap='userd' data-id='{{item.id}}' data-time='{{item.start_time}}'>
+              立即使用
+            </view>
+
+
+            <button class="share-btn" open-type="share" data-id='{{item.id}}' data-couponid='{{item.coupon_id}}' data-code='{{item.code}}'> 分享卡券</button> -->
+
+            <view  class='remove_rate' bindtap='removeCoupon' data-id='{{item.id}}'>
+              删除卡券
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:else style='color:#999;text-align:center;margin-top:44rpx; '>暂无数据</view>
+
+    </view>
+
+    <!-- 待支付 -->
+    <!-- <view wx:if="{{selectedIndex==3}}" class='tab_index '>
+
+      <block wx:if="{{payData.length>0}}">
+        <view class='CouponList_wrap' wx:for='{{payData}}' wx:key='{{index}}'>
+        
+
+          <view class='CouponList' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goBuyDetail'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+              <view style='margin-left:16rpx;'>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>抢购价 : </text>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>{{item.buying_price}}元</text>
+              </view>
+
+              <view style='font-size:24rpx;color:#999999;text-align:right;font-weight:500;text-decoration:line-through'>原价: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+          </view>
+       
+
+          <view class='CouponList' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goPromotionDetail'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+              <view style='font-size:24rpx;color:#FE012B;text-align:right;font-weight:700;margin-bottom:20rpx;'>价值: {{item.original_price}}元</view>
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view>
+
+
+          <view class='border_bottom'></view>
+          <view class='rate'>
+            <view class='extension_rate' bindtap='payCoupon' data-id='{{item.id}}'>
+              立即支付
+            </view>
+
+            <button class="share-btn" open-type="share" data-id='{{item.id}}' data-couponid='{{item.coupon_id}}' data-code='{{item.code}}'> 分享卡券</button>
+
+            <view class='remove_rate' bindtap='removeCoupon' data-id='{{item.id}}'>
+              删除卡券
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:else style='color:#999;text-align:center;margin-top:170rpx;'>暂无数据</view>
+
+    </view> -->
+
+
+
+  </view>
+
+
+</view>
+
+<!-- 输入分享卡券数量的弹窗 -->
+<view class="zhezhao" hidden='{{shareNumFlag}}'></view>
+<view class="kcrzxy" hidden='{{shareNumFlag}}'>
+  <view class="kcrzxyhd">分享的卡券数量</view>
+
+  <input bindinput='listerShareNumber' bindconfirm="shareNumberqueren" value='{{shareNumberValue}}' type='number' placeholder='请输入需要分享优惠券的数量' style='border:1px solid #999;padding:20rpx 20rpx;' placeholder-class='holder'></input>
+
+  <view style='color:red;font-weight:700;font-size:30rpx;margin-bottom:20rpx;margin-top:20rpx;'>如不需要分享请点击取消，分享后24小时以后未被领取卡券退还!</view>
+
+  <view style='display:flex;justify-content:space-around'>
+    <view bindtap="shareNumberquxiao" class="quxiao">取消</view>
+    <!-- <button class="queren" open-type="share"> 分享</button> -->
+    <view class="queren" bindtap='shareNumberqueren'> 确认</view>
+  </view>
+</view>
+
+<!-- 最终确认分享按钮 -->
+<view class="zhezhao" hidden='{{shareFlag}}'></view>
+<view class="kcrzxy" hidden='{{shareFlag}}'>
+  <view class="kcrzxyhd">卡券分享</view>
+
+  <view style='margin:30rpx;'>已创建
+    <text style='color:red;font-weight:700'>{{shareNumberValue}}</text> 张卡券</view>
+  <view style='color:red;font-weight:700;font-size:30rpx;margin-bottom:20rpx;margin-left:30rpx'>卡券已创建，分享后24小时以后未被领取卡券退还!</view>
+
+  <view style='display:flex;justify-content:space-around;margin-bottom:20rpx;'>
+    <view bindtap="sharequxiao" class="quxiao">取消</view>
+    <!-- <button class="queren" open-type="share"> 分享</button> -->
+    <button class="queren" open-type="share"> 分享</button>
+  </view>
+</view>

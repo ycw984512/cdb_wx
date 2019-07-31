@@ -1,0 +1,21 @@
+<block wx:if="{{giftList}}">
+  <view class='gift_list'>
+    <view class='list_top' bindtap='goGiftDetail'>
+      <view class='gift_title'>{{giftList.name}}</view>
+      <view class='gift_money'>
+        <text class='gift_price'>{{giftList.pay_money}}元</text>
+        <text class='gift_consume'>线下消费金额</text>
+      </view>
+    </view>
+    <view class='list_bottom' bindtap='goGiftDetail'>
+    查看礼包详情
+    </view>
+  </view>
+</block>
+<view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无礼包</view>
+  <view wx:if="{{giftList}}" class='submitBtn' bindtap='giveIt'>
+    立即领取
+  </view>
+<view class="backindex" bindtap='backindex'>
+  <image src="/static/images/backindex.png"></image>
+</view>

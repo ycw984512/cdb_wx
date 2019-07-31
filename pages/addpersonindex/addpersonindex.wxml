@@ -1,0 +1,5 @@
+<!--pages/addpersonindex/addpersonindex.wxml-->
+<view style='text-align:center;margin-top:60rpx;'>是否确认成为该门店的员工</view>
+  <view class='submitBtn' bindtap='submitBtn'>
+    确认
+  </view>

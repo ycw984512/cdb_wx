@@ -1,0 +1,9 @@
+<view class='points_title'>
+剩余积分数量
+</view>
+<view class='points_number'>
+{{integral}}
+</view>
+
+<view class='recharge' bindtap='recharge'>充值积分</view>
+<view class='lookPoints' bindtap='lookPoints'>积分明细</view>

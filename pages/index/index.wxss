@@ -1,0 +1,263 @@
+/* pages/searchHotel/searchHotel.wxss */
+
+Page {
+  width: 100%;
+}
+
+swiper {
+  height: 350rpx;
+  margin-top: 96rpx;
+}
+
+.pageHeader {
+  width: 100%;
+  display: flex;
+  background: #fff;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.searchHeader {
+  width: 100%;
+  height: 96rpx;
+  box-sizing: border-box;
+  background: #fff;
+  display: flex;
+  padding: 0 10rpx 0 20rpx;
+  flex-direction: row;
+  align-items: flex-end;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+}
+
+.searchHeader .location {
+  font-family: PingFang-SC-Medium;
+  color: #333;
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 70rpx;
+  max-width: 200rpx;
+}
+
+.citySelect {
+  margin-top: -51rpx;
+  display: flex;
+  align-items: center;
+  top: -33rpx;
+  position: relative;
+  font-size: 24rpx;
+}
+
+.indexTitle {
+  flex: 1;
+  position: relative;
+  margin-top: -30rpx;
+  top: -23rpx;
+}
+
+.indexTitle text {
+  position: absolute;
+  top: -36rpx;
+  right: 299rpx;
+  color: #fff;
+  font-size: 36rpx;
+}
+
+/* 促销券和抢购券 */
+
+.promotional {
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #999;
+  margin: 0 20rpx 0 20rpx;
+}
+
+.promotional_list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.promotional_coupons {
+  padding: 0rpx 0 0rpx 20rpx;
+  font-family: PingFang-SC-Medium;
+  margin: 30rpx 0 40rpx 28rpx;
+  border-left: 5rpx solid #1b82d1;
+  font-size: 30rpx;
+}
+
+.promotional_list_sigle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.promotional_list_sigle image {
+  width: 75rpx;
+  height: 75rpx;
+}
+
+.promotional_list_sigle:last-child image {
+  width: 70rpx;
+  height: 70rpx;
+  margin-top: 6rpx;
+}
+
+.promotional_list_sigle text {
+  font-size: 28rpx;
+}
+
+/* 附近的商家 */
+
+.business {
+  margin-top: 20rpx;
+  background: #eee;
+}
+
+.business .business_title {
+  height: 78rpx;
+  background: #fff;
+  padding-bottom: 10rpx;
+}
+
+.business .business_title text {
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  padding: 0rpx 0rpx 20rpx 0rpx;
+  border-bottom: 5px solid #1b82d1;
+}
+
+.business  .business_list {
+  display: flex;
+  margin: 0rpx 0 20rpx 0rpx;
+  position: relative;
+  background: #fff;
+  padding: 30rpx 0;
+  padding-left: 20rpx;
+}
+
+.business  .business_list image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.business  .business_describe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 20rpx;
+}
+
+.business_describe_top {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.business_describe_middle {
+  font-size: 24rpx;
+}
+
+.business_describe_bottom {
+  font-size: 26rpx;
+}
+
+.business  .business_distance {
+  font-size: 28rpx;
+  color: rgba(255, 141, 26, 1);
+  position: absolute;
+  top: 0rpx;
+  right: 20rpx;
+}
+
+.zhezhao {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 98;
+}
+
+.info_wrap {
+  width: 600rpx;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  max-height: 800rpx;
+  overflow-y: scroll;
+}
+
+.inner-info_wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.market_wrap {
+  width: 94%;
+  margin: 30rpx auto;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+}
+
+.market_wrap image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.coupon {
+  font-size: 26rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 10rpx;
+  color: rgba(153, 153, 153, 1);
+}
+
+.market_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+
+.market_title view {
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: #333;
+  font-size: 26rpx;
+  margin-bottom: 15rpx;
+}
+
+.market_title text {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+
+.pay_wrap {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 30rpx;
+}
+
+.pay, .cancle {
+  width: 150rpx;
+  height: 80rpx;
+  background: #1b82d1;
+  color: #fff;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+}

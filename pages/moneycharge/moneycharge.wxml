@@ -1,0 +1,7 @@
+<view class='points_wrap'>
+  <input type='digit' placeholder='请输入需要充值的金额' placeholder-style='font-size:24rpx;color:#999' style='padding-left:20rpx;margin-left:30rpx;' bindinput='moneyInput' value='{{moneyValue}}'></input>
+</view>
+
+  <view class='submitBtn' bindtap='submitBtn'>
+  立即充值
+</view>

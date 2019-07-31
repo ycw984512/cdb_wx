@@ -1,0 +1,18 @@
+    <block wx:if="{{allDate.length>0}}">
+      <view class='market_wrap' wx:for='{{allDate}}' wx:key='{{index}}'>
+        <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+        <view class='market_title'>
+          <view>{{item.name}}</view>
+        </view>
+        <view class='coupon' data-id='{{item.id}}' bindtap='goStore'>
+          <view>进入门店</view>
+        </view>
+      </view>
+    </block>
+      <view wx:else style='color:#999;text-align:center;margin-top:100rpx;'>暂无数据</view>
+
+
+    
+<!-- <view class='btn'>
+  <view class='btn_download'  bindtap='closeStore'>退出门店管理</view>
+</view> -->

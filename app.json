@@ -1,0 +1,120 @@
+{
+  "pages": [
+    "pages/loadingIndex/loadingIndex",
+    "pages/upload/upload",
+    "pages/index/index",
+    "pages/home/home",
+    "pages/mycoupons/mycoupons",
+    "pages/gift/gift",
+    "pages/public/public",
+    "pages/promotionlist/promotionlist",
+    "pages/promotiondetail/promotiondetail",
+    "pages/search/search",
+    "pages/lookbuydetail/lookbuydetail",
+    "pages/mybuydetail/mybuydetail",
+    "pages/buylist/buylist",
+    "pages/storedetail/storedetail",
+    "pages/buydetail/buydetail",
+    "pages/changepassword/changepassword",
+    "pages/setup/setup",
+    "pages/marketcenter/marketcenter",
+    "pages/mywallet/mywallet",
+    "pages/mycollection/mycollection",
+    "pages/mypoints/mypoints",
+    "pages/mycode/mycode",
+    "pages/lookpromotiondetail/lookpromotiondetail",
+    "pages/mypromotiondetail/mypromotiondetail",
+    "pages/shop/shop",
+    "pages/newgift/newgift",
+    "pages/giftdetail/giftdetail",
+    "pages/mygift/mygift",
+    "pages/choosetemplate/choosetemplate",
+    "pages/haspublicpromotion/haspublicpromotion",
+    "pages/publicbuylist/publicbuylist",
+    "pages/haspublicbuy/haspublicbuy",
+    "pages/publicpromotion/publicpromotion",
+    "pages/tabbar/tabbar",
+    "pages/setinfo/setinfo",
+    "pages/couponaddress/couponaddress",
+    "pages/shopaddress/shopaddress",
+    "pages/select_city/select_city",
+    "pages/visitorindex/visitorindex",
+    "pages/visitormy/visitormy",
+    "pages/11111/11111",
+    "pages/mypointsdetail/mypointsdetail",
+    "pages/changepromotion/changepromotion",
+    "pages/pointscharge/pointscharge",
+    "pages/changeBuy/changeBuy",
+    "pages/proposesuggest/proposesuggest",
+    "pages/sharegift/sharegift",
+    "pages/sharecoupon/sharecoupon",
+    "pages/usercoupon/usercoupon",
+    "pages/usefulcoupon/usefulcoupon",
+    "pages/online/online",
+    "pages/helpcenter/helpcenter",
+    "pages/storedata/storedata",
+    "pages/addperson/addperson",
+    "pages/mystore/mystore",
+    "pages/addpersonindex/addpersonindex",
+    "pages/giftsure/giftsure",
+    "pages/cashpage/cashpage",
+    "pages/listcz/listcz",
+    "pages/listtx/listtx",
+    "pages/listfl/listfl",
+    "pages/listkf/listkf",
+    "pages/moneycharge/moneycharge",
+    "pages/visitcoupondetail/visitcoupondetail",
+    "pages/visitcoupondetailpro/visitcoupondetailpro",
+    "pages/managestore/managestore",
+    "pages/mycodedetail/mycodedetail"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取当前位置"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#1b82d1",
+    "navigationBarBackgroundColor": "#1b82d1",
+    "navigationBarTitleText": "充店宝",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#1b82d1",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/images/shouye.png",
+        "selectedIconPath": "/static/images/shouye_active.png"
+      },
+      {
+        "pagePath": "pages/public/public",
+        "text": "优惠券",
+        "iconPath": "/static/images/yhq.png",
+        "selectedIconPath": "/static/images/yhq_active.png"
+      },
+      {
+        "pagePath": "pages/mygift/mygift",
+        "text": "礼包",
+        "iconPath": "/static/images/libao.png",
+        "selectedIconPath": "/static/images/libao_active.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "商城",
+        "iconPath": "/static/images/shangcheng.png",
+        "selectedIconPath": "/static/images/shangcheng_active.png"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "我的",
+        "iconPath": "/static/images/wode.png",
+        "selectedIconPath": "/static/images/wode_active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

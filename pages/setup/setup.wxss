@@ -1,0 +1,50 @@
+/* pages/setup/setup.wxss */
+
+.xiugai, .change {
+  display: flex;
+  position: relative;
+  width: 94%;
+  margin: 0 auto;
+  padding: 30rpx 0;
+}
+
+.xiugai image {
+  width: 33rpx;
+  height: 33rpx;
+  vertical-align: top;
+  margin-top: 5rpx;
+}
+
+.xiugai view, .change view {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.xiugai text, .change text {
+  position: absolute;
+  right: 0;
+  color: #999;
+}
+
+.change image {
+  width: 33rpx;
+  height: 28rpx;
+  vertical-align: top;
+  margin-top: 8rpx;
+}
+
+.btn{
+  width: 690rpx;
+  height:88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size:32rpx;
+font-family:PingFang-SC-Medium;
+font-weight:500;
+color:rgba(255,255,255,1);
+background: #CCCCCC;
+border-radius: 50rpx;
+margin: 60rpx auto;
+}

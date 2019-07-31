@@ -1,0 +1,13 @@
+var getFilter = function(value) {
+  var value = value+'';
+  var arr = value.split('.');
+
+  var num = arr[1];
+  if (num > 0) {
+    value = Number(value).toFixed(1);
+    return value
+  } else {
+    return arr[0]
+  }
+}
+module.exports.getFilter = getFilter;

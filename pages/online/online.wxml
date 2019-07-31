@@ -1,0 +1,18 @@
+<view class="container1">
+  <button class="kf" openType="contact">
+    <image src="../../static/images/lxwm1.png"></image>
+    <view>在线客服</view>
+  </button>
+  <button bindtap="tel" class="kf">
+    <image src="../../static/images/lxwm2.png"></image>
+    <view>联系电话</view>
+  </button>
+  <button bindtap="goSug" class="kf">
+    <image src="../../static/images/lxwm3.png"></image>
+    <view>投诉建议</view>
+  </button>
+  <button bindtap="goHelp" class="kf">
+    <image src="../../static/images/lxwm4.png"></image>
+    <view>帮助中心</view>
+  </button>
+</view>

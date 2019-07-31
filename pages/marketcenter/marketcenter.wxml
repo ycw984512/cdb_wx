@@ -1,0 +1,313 @@
+<wxs src="../../common/num.wxs" module="m1" />
+<wxs src="../../common/num1.wxs" module="m2" />
+<view class='top_wrap'>
+  <view class='order_contain'>
+    <view style='flex:1;margin-left:20rpx'>
+      <view class='header_tab'>
+        <block wx:for="{{stateList}}" wx:key="{{index}}">
+          <view bindtap='turnPage' data-index="{{index}}" hover-class='tab_item_hover' class="{{selectedIndex == index?'tab_item_selected':'tab_item_default'}}">
+            <text>{{item.name}}</text>
+            <view>({{item.num}})张</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+
+<view class='border_middle' style='margin-top:{{marginTop}}rpx'></view>
+<view class='tab_bar'>
+  <!-- 发布的券 -->
+  <view wx:if="{{selectedIndex==0}}" class='tab_index'>
+
+
+    <block wx:if="{{tab1Data.length>0}}">
+      <view class='wrap' wx:for='{{tab1Data}}' wx:key='{{index}}'>
+        <!-- 抢购券 -->
+        <view class='new_coupon' data-id='{{item.id}}' wx:if='{{item.type==1}}'>
+          <image style='width:100%;height:100%' src='/static/images/buylist.png'></image>
+          <view class='top_left'>
+            <view class='top_left_img'>
+              <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='top_left_name'>
+              <view class='top_left_name_goods'>{{item.name}}</view>
+              <view class='top_left_name_store'>【
+                <view>{{item.store_name}}</view>】
+              </view>
+              <view class='top_left_name_rate'>
+                <view>锁客返佣{{item.rebate_commission}}%</view>
+                <view>推广返佣{{item.promotion_commission}}%</view>
+              </view>
+            </view>
+          </view>
+          <view class='top_right'>
+            <view class='top_right_wrap'>
+              <view>体验 / 抢购价</view>
+              <view>{{m2.getFilter(item.buying_price)}}
+                <text>元</text>
+              </view>
+        <view>原价
+        <span style='text-decoration:line-through;text-decoration-color:gray'>{{m2.getFilter(item.original_price)}}元</span> </view>   
+            </view>
+          </view>
+          <view class='bottom_left'>
+            <view>有效期 : {{item.end_time}}</view>
+          </view>
+          <view class='bottom_right'>
+            <view>剩余 ： {{item.stock}}张</view>
+          </view>
+          <view class='bottom_img'>
+            <!-- <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==0}}">待提交审核</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==1}}">待审核</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==2}}">待发布</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==3}}">已发布</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==4}}">已下架</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==5}}">已拒绝</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==6}}">已过期</text> -->
+            <image src='/static/images/111.png' wx:if="{{item.state==1}}"></image>
+            <image src='/static/images/222.png' wx:if="{{item.state==6}}"></image>
+            <image src='/static/images/333.png' wx:if="{{item.state==4}}"></image>
+
+          </view>
+        </view>
+
+        <!-- <view class='CouponList' wx:if='{{item.type==1}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetail'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+              <view style='font-size:24rpx;color:#999'>剩余{{item.num}}张</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+              <view style='margin-left:16rpx;'>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>抢购价 : </text>
+                <text style='font-size:24rpx;color:#FE012B;font-weight:700'>{{item.buying_price}}元</text>
+              </view>
+
+              <view style='font-size:24rpx;color:#999999;text-align:right;font-weight:500;text-decoration:line-through'>原价: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+
+        <!-- 促销券 -->
+
+        <view class='new_coupon' bindtap='goPromotionDetail' data-id='{{item.id}}' wx:if='{{item.type==2}}'>
+          <image style='width:100%;height:100%' src='/static/images/prolist.png'></image>
+          <view class='top_left'>
+            <view class='top_left_img'>
+              <image wx:if='{{upload_domain&&item.logo}}' src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='top_left_name'>
+              <view class='top_left_name_goods'>{{item.name}}</view>
+              <view class='top_left_name_store'>【
+                <view>{{item.store_name}}</view>】
+              </view>
+              <view class='top_left_name_rate'>
+                <view>锁客返佣{{item.rebate_commission}}%</view>
+              </view>
+            </view>
+          </view>
+          <view class='top_right'>
+            <view class='top_right_wrap'>
+              <view>价值</view>
+              <view>{{m2.getFilter(item.original_price)}}
+                <text>元</text>
+              </view>
+            </view>
+          </view>
+          <view class='bottom_left'>
+            <view>有效期 : {{item.end_time}}</view>
+          </view>
+          <view class='bottom_right'>
+            <view>剩余 ： {{item.stock}}张</view>
+          </view>
+          <view class='bottom_img'>
+            <!-- <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==0}}">待提交审核</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==1}}">待审核</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==2}}">待发布</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==3}}">已发布</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==4}}">已下架</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==5}}">已拒绝</text>
+        <text style='font-size:24rpx;color:#999;font-weight:700;' wx:if="{{item.state==6}}">已过期</text> -->
+            <image src='/static/images/111.png' wx:if="{{item.state==1}}"></image>
+            <image src='/static/images/222.png' wx:if="{{item.state==6}}"></image>
+            <image src='/static/images/333.png' wx:if="{{item.state==4}}"></image>
+
+          </view>
+        </view>
+        <!-- <view class='CouponList' wx:if='{{item.type==2}}' data-id='{{item.coupon_id}}' bindtap='goVisitCouponDetailPro'>
+            <view class='CouponList_img'>
+              <image wx:if="{{item.logo&&upload_domain}}" src='{{upload_domain}}{{item.logo}}'></image>
+            </view>
+            <view class='CouponList_name'>
+              <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+              <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+              <view style='font-size:24rpx;color:#999'>有效期{{item.start_time}} - {{item.end_time}}</view>
+              <view style='font-size:24rpx;color:#999'>剩余{{item.num}}张</view>
+            </view>
+            <view class='CouponList_rate'>
+            </view>
+            <view class='CouponList_money'>
+
+              <view style='font-size:24rpx;color:#FE012B;text-align:right;font-weight:700;margin-bottom:20rpx;'>价值: {{item.original_price}}元</view>
+
+              <view style='display:flex; justify-content: flex-end;'>
+                <image src='/static/images/dizhi.png' style='width:24rpx;vertical-align:middle;height:30rpx;margin-right:10rpx;'></image>
+
+                <block>
+                  <view style='font-size:24rpx;color:#999' wx:if='{{item.distance>1}}'>
+                    {{m1.getFix(item.distance)}}km
+                  </view>
+                  <view style='font-size:24rpx;color:#999' wx:else>
+                    {{item.distance*1000}}m
+                  </view>
+                </block>
+
+              </view>
+            </view>
+
+          </view> -->
+      </view>
+    </block>
+    <view wx:else style='color:#999;text-align:center;margin-top:170rpx;'>暂无数据</view>
+
+
+    <!-- <block wx:if="{{tab1Data.length>0}}">
+      <view class='CouponList_wrap' wx:for="{{tab1Data}}" wx:key="{{index}}">
+        <view class='CouponList' data-id='{{item.id}}' bindtap='goBuyDetail'>
+          <view class='CouponList_img'>
+            <image src='{{upload_domain}}{{item.logo}}' wx:if="{{item.logo}}"></image>
+          </view>
+          <view class='CouponList_name'>
+            <view style='font-size:30rpx;font-weight:700;'>{{item.name}}</view>
+            <view style='font-size:26rpx;color:#666;'>{{item.store_name}}</view>
+            <view style='font-size:24rpx;color:#999'>数量{{item.total}}张</view>
+          </view>
+          <view class='CouponList_rate'>
+            <view class='rate'>
+
+              <view class='extension_rate' wx:if='{{item.type==1}}'>
+                推广返佣{{item.promotion_commission}}%
+              </view>
+              <view class='lock_rate'>
+                锁客返佣{{item.rebate_commission}}%
+              </view>
+
+
+            </view>
+          </view>
+          <view class='CouponList_money'>
+            <view style='margin:0 10rpx;text-align:right'>
+              <text style='font-size:24rpx;color:#999;font-weight:700;margin-bottom:10rpx;' wx:if="{{item.state==0}}">待提交审核</text>
+              <text style='font-size:24rpx;color:#999;font-weight:700;margin-bottom:10rpx;' wx:if="{{item.state==1}}">待审核</text>
+              <text style='font-size:24rpx;color:#999;font-weight:700;margin-bottom:10rpx;' wx:if="{{item.state==2}}">待发布</text>
+              <text style='font-size:24rpx;color:#999;font-weight:700;margin-bottom:10rpx;' wx:if="{{item.state==3}}">已发布</text>
+              <text style='font-size:24rpx;color:#999;font-weight:700;margin-bottom:10rpx;' wx:if="{{item.state==4}}">已下架</text>
+              <text style='font-size:24rpx;color:#999;font-weight:700;margin-bottom:10rpx;' wx:if="{{item.state==5}}">已拒绝</text>
+            </view>
+
+
+            <block wx:if='{{item.type==1}}'>
+              <view style='font-size:24rpx;color:#999999;text-align:right;font-weight:500;text-decoration:line-through;margin-bottom:10rpx;'>原价: {{item.original_price}}元</view>
+
+              <view style='font-size:24rpx;color:#FE012B;font-weight:700;margin-bottom:10rpx;'>抢购价:{{item.buying_price}}元</view>
+            </block>
+
+            <block wx:if='{{item.type==2}}'>
+              <view style='font-size:24rpx;color:#FE012B;font-weight:700;margin-bottom:10rpx;'>价值:{{item.original_price}}元</view>
+            </block>
+
+
+          </view>
+
+        </view>
+        <view class='border_bottom'></view>
+
+
+      </view>
+    </block>
+    <view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无数据</view> -->
+
+  </view>
+
+  <!-- 下载的券 -->
+  <view wx:if="{{selectedIndex==1}}" class='tab_buy'>
+    <block wx:if="{{tab2Data.length>0}}">
+      <view class='market_wrap' wx:for='{{tab2Data}}' wx:key='{{index}}'>
+        <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+        <view class='market_title'>
+          <view>{{item.name}}</view>
+          <text>下载时间：{{item.create_time}}</text>
+        </view>
+        <view class='coupon'>
+          <view>卡券 : {{item.coupon_name}}</view>
+          <view style='margin:10rpx 0 0 8rpx;'>数量 : {{item.total}}</view>
+        </view>
+      </view>
+    </block>
+    <view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无数据</view>
+
+  </view>
+
+  <!-- 领取的券 -->
+  <view wx:if="{{selectedIndex==2}}" class='tab_promotion'>
+    <block wx:if="{{tab3Data.length>0}}">
+      <view class='market_wrap' wx:for='{{tab3Data}}' wx:key='{{index}}'>
+        <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+        <view class='market_title'>
+          <view>{{item.name}}</view>
+          <text>领取时间：{{item.create_time}}</text>
+        </view>
+        <view class='coupon'>
+          <view>卡券 : {{item.coupon_name}}</view>
+          <view style='margin:10rpx 0 0 8rpx;'>数量 : {{item.num}}</view>
+        </view>
+      </view>
+    </block>
+    <view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无数据</view>
+
+  </view>
+
+  <!-- 使用的券 -->
+  <view wx:if="{{selectedIndex==3}}" class='tab_promotion'>
+    <block wx:if="{{tab4Data.length>0}}">
+      <view class='market_wrap' wx:for='{{tab4Data}}' wx:key='{{index}}'>
+        <image wx:if='{{item.picture}}' src='{{item.picture}}'></image>
+        <view class='market_title'>
+          <view>{{item.name}}</view>
+          <text>核销时间：{{item.write_off_time}}</text>
+        </view>
+        <view class='coupon'>
+          <view>卡券 : {{item.coupon_name}}</view>
+
+        </view>
+      </view>
+    </block>
+    <view wx:else style='color:#999;text-align:center;margin-top:436rpx;'>暂无数据</view>
+
+  </view>
+</view>

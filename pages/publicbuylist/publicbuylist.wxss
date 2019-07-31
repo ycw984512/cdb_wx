@@ -1,0 +1,226 @@
+page{
+padding-bottom: 30rpx;
+}
+.coupon_name {
+  display: flex;
+  margin: 30rpx 20rpx 0 20rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.coupon_name2 {
+  display: flex;
+  margin: 30rpx 20rpx 0 20rpx;
+  justify-content: space-between;
+  padding-bottom: 15rpx;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.coupon_name view {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  height: 65rpx;
+  line-height: 65rpx;
+}
+
+.coupon_name input {
+  flex: 1;
+  height: 65rpx;
+  line-height: 65rpx;
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  color: #999;
+}
+
+.coupon_name textarea {
+flex:1;
+width:400rpx;
+margin-top: 15rpx;
+height:200rpx;
+color:#777;
+font-size:28rpx;
+
+}
+
+.holderClass {
+  text-align: right;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(205, 205, 205, 1);
+}
+
+radio {
+  width: 38rpx;
+}
+
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 26rpx; /* 对勾大小 26rpx */
+  color: #fff; /* 对勾颜色 */
+  background: #1b82d1;
+  border-color: #1b82d1;
+}
+
+.submitBtn {
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #fff;
+  text-align: center;
+  background: #1b82d1;
+  margin: 30rpx auto;
+  border-radius: 50rpx;
+
+}
+
+.kcrzxy {
+  width: 70%;
+  left: 50%;
+  top: 15%;
+  position: fixed;
+  transform: translate(-50%, 0);
+  background: #fff;
+  border-radius: 10px;
+  z-index: 999;
+}
+
+.kcrzxyhd {
+  text-align: center;
+  font-size: 30rpx;
+  background: #1b82d1;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.kcrzxybd {
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+wx-button:active {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.6;
+}
+
+.zhezhao {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+}
+
+.kcrzxy {
+  width: 70%;
+  left: 50%;
+  top: 15%;
+  position: fixed;
+  transform: translate(-50%, 0);
+  background: #fff;
+  border-radius: 10px;
+  z-index: 999;
+}
+
+.kcrzxyhd {
+  text-align: center;
+  font-size: 30rpx;
+  background: #1b82d1;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.kcrzxybd {
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.queren, .quxiao {
+  height: 70rpx;
+  width: 30%;
+  font-size: 30rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: white;
+  background: #1b82d1;
+  border-radius: 10rpx;
+  margin: 5px 0;
+}
+
+wx-button:active {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.6;
+}
+
+.zhezhao {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+}
+
+.holder {
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.shareimage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, 50%, 0);
+  width: 442rpx;
+  height: 458rpx;
+  z-index: 99;
+  border-radius: 65rpx;
+}
+
+button::after {
+  border: none;
+}
+
+button {
+  background-color: #fff;
+}
+
+button {
+  border-radius: 0;
+}
+
+.queren1 {
+  height: 70rpx;
+  width: 30%;
+  font-size: 30rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: white;
+  background: #1b82d1;
+  border-radius: 10rpx;
+  margin: 5px 0;
+    margin-left:183rpx;
+}

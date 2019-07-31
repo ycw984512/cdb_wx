@@ -1,0 +1,7 @@
+
+var getFix = function (value) {
+  var fixValue = undefined;
+  fixValue = value.toFixed(1);
+  return fixValue;
+}
+module.exports.getFix = getFix;

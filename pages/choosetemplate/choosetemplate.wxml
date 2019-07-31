@@ -1,0 +1,13 @@
+<view style='margin:30rpx 20rpx 0rpx 20rpx;'>
+  <image src='/static/images/muban.png' style='width:34rpx; vertical-align: middle;' mode='widthFix'></image>
+  <text style='width:34rpx;margin:0rpx 0rpx 0rpx 20rpx;font-size:30rpx;'>模板列表</text>
+</view>
+
+<view class='template_list' style='margin:30rpx 20rpx 0rpx 20rpx;'>
+  <radio-group class="radio-group" bindchange="radioChange">
+    <view class='template_sigle' wx:for="{{templateData}}" wx:key="{{index}}">
+      <radio value="{{item.content}}" checked="" />
+      <text>{{item.content}}</text>
+    </view>
+  </radio-group>
+</view>
