@@ -56,7 +56,11 @@ Page({
     code: null,
     moneyFlag: false,
     timeData: null,
-    store_name: undefined
+    store_name: undefined,
+    type: "common",
+    moneyFlag1:false,
+    amount: 0,
+    order_no: ""
   },
 
   /**
@@ -657,31 +661,59 @@ Page({
   //     url: '../buydetail/buydetail?isShow=false&id=' + id,
   //   })
   // },
-  //立即支付
-  payCoupon(e) {
-    var id = e.currentTarget.dataset.id;
-    var token = app.globalData.token;
 
-    request({
-      url: "/api/tourist_coupon/pay_couponr_residual_amount",
-      header: {
-        'content-type': 'application/json', // 默认值
-        token: app.globalData.token
-      },
-      data: {
-        id: id
-      }
-    }).then(res => {
-      //dosome
-      console.log(res);
-      if (res.data.error_code == 0) {
-        wx.requestPayment({
-          timeStamp: res.data.data.wx_pay.timeStamp,
-          nonceStr: res.data.data.wx_pay.nonceStr,
-          package: res.data.data.wx_pay.package,
-          paySign: res.data.data.wx_pay.paySign,
-          signType: "MD5",
-          success(res) {
+
+
+
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    this.setData({
+      type: e.detail.value
+    })
+  },
+
+  //取消不支付
+  cancleFlag() {
+    this.setData({
+      moneyFlag1: false
+    })
+  },
+
+
+
+  // 确认支付
+  payMoney1() {
+    var that = this;
+    that.setData({
+      moneyFlag1: false
+    })
+    wx.showLoading({
+      title: "加载中",
+      mask: true
+    })
+    //选择微信支付
+    if (this.data.type == "extension") {
+      request({
+        url: "/api/tourist_coupon/pay_coupon_residual_amount_pay",
+        header: {
+          'content-type': 'application/json', // 默认值
+          token: app.globalData.token,
+        },
+        data: {
+          order_no: this.data.order_no,
+          pay_type: 1
+        }
+      }).then(res => {
+        console.log(res);
+        if (res.data.error_code == 0) {
+
+          wx.requestPayment({
+            timeStamp: res.data.data.wx_pay.timeStamp,
+            nonceStr: res.data.data.wx_pay.nonceStr,
+            package: res.data.data.wx_pay.package,
+            paySign: res.data.data.wx_pay.paySign,
+            signType: "MD5",
+            success(res) {
 
             wx.showToast({
               title: '支付成功',
@@ -694,27 +726,129 @@ Page({
               })
             }, 2000)
 
-            // wx.showModal({
-            //   title: '提示',
-            //   content: '支付成功',
-            //   showCancel: false,
-            //   success(res) {
-            //     if (res.confirm) {
-            //       wx.reLaunch({
-            //         url: '../visitorindex/visitorindex',
-            //       })
-            //     }
-            //   }
-            // })
 
-          },
-          fail(res) {
-            console.log(res)
-          },
-          complete(res) {
-            console.log(res)
-          }
-        })
+            },
+            fail(res) {
+              wx.showToast({
+                title: '支付失败',
+              })
+            },
+
+          })
+
+        } else {
+          wx.hideLoading();
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+
+      })
+
+
+      //选择余额支付
+    } else if (this.data.type == "common") {
+      request({
+        url: "/api/tourist_coupon/pay_coupon_residual_amount_pay",
+        header: {
+          'content-type': 'application/json', // 默认值
+          token: app.globalData.token,
+
+        },
+        data: {
+          order_no: this.data.order_no,
+          pay_type: 0
+        }
+      }).then(res => {
+        console.log(res);
+        if (res.data.error_code == 0) {
+          wx.hideLoading();
+            wx.showToast({
+              title: '支付成功',
+              duration: 2000,
+              mask: true
+            })
+            setTimeout(function () {
+              wx.reLaunch({
+                url: '../visitorindex/visitorindex'
+              })
+            }, 2000)
+
+        } else {
+          wx.hideLoading();
+
+
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+
+      })
+    }
+
+
+  },
+
+
+  //立即支付
+  payCoupon(e) {
+
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    var token = app.globalData.token;
+
+    request({
+      url: "/api/tourist_coupon/pay_coupon_residual_amount",
+      header: {
+        'content-type': 'application/json', // 默认值
+        token: app.globalData.token
+      },
+      data: {
+        id: id
+      }
+    }).then(res => {
+      //dosome
+      console.log(res);
+      if (res.data.error_code == 0) {
+
+          that.setData({
+            moneyFlag: true,
+            amount: res.data.data.amount,
+            order_no: res.data.data.order_no
+          })
+
+
+        // wx.requestPayment({
+        //   timeStamp: res.data.data.wx_pay.timeStamp,
+        //   nonceStr: res.data.data.wx_pay.nonceStr,
+        //   package: res.data.data.wx_pay.package,
+        //   paySign: res.data.data.wx_pay.paySign,
+        //   signType: "MD5",
+        //   success(res) {
+
+        //     wx.showToast({
+        //       title: '支付成功',
+        //       duration: 2000,
+        //       mask: true
+        //     })
+        //     setTimeout(function () {
+        //       wx.reLaunch({
+        //         url: '../visitorindex/visitorindex'
+        //       })
+        //     }, 2000)
+
+
+
+        //   },
+        //   fail(res) {
+        //     console.log(res)
+        //   },
+        //   complete(res) {
+        //     console.log(res)
+        //   }
+        // })
 
       } else {
         wx.showModal({

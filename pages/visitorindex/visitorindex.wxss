@@ -705,3 +705,55 @@ new_coupon:nth-child(1) {
         color: #e75252;
         font-weight: 300;
       }
+
+
+      .info_wrap {
+  width: 600rpx;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+
+.pay_wrap {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 30rpx;
+}
+
+.pay, .cancle {
+  width: 150rpx;
+  height: 80rpx;
+  background: #1b82d1;
+  color: #fff;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+}
+
+radio {
+  width: 38rpx;
+}
+
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 26rpx; /* 对勾大小 26rpx */
+  color: #fff; /* 对勾颜色 */
+  background: #1b82d1;
+  border-color: #1b82d1;
+}

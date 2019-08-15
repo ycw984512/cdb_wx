@@ -12,7 +12,13 @@ Page({
     inputMoney: "",
     realMoney: "",
     rateMoney: "",
-    rate: ""
+    rate: "",
+    txtypes: ["微信", "银行卡"],
+    current: 0,
+    inputNumber:'',
+    inputName:'',
+    bank: ["中国农业银行", "中国工商银行", "中国建设银行", "中国银行", "中国交通银行","兴业银行",],
+    yhkindex:0
   },
 
 
@@ -42,6 +48,11 @@ Page({
     })
 
   },
+  txsel(e) {
+    this.setData({
+      current: e.currentTarget.dataset.dex,
+    })
+  },
 
   allmoney() {
     var allMoney = Number(this.data.allMoney);
@@ -53,6 +64,22 @@ Page({
       inputMoney: allMoney,
       rateMoney,
       realMoney
+    })
+  },
+  selyhk(e) {
+    this.setData({
+      yhkindex: e.detail.value
+    })
+  },
+
+  numberInput(e){
+      this.setData({
+        inputNumber:e.detail.value
+      })
+  },
+  nameInput(e) {
+    this.setData({
+      inputName: e.detail.value
     })
   },
 
@@ -70,93 +97,162 @@ Page({
   },
   submit() {
     var inputMoney = this.data.inputMoney;
-    if (inputMoney == "") {
-      // wx.showModal({
-      //   title: '提示',
-      //   content: '提现金额不能小于或等于0',
-      // })
-      wx.showToast({
-        image: '/static/images/chahao2.png',
-        icon: 'none',
-        title: '请输入提现金额',
-        mask: true,
-        duration: 1500
-      })
+    var inputNumber = this.data.inputNumber;
+    var inputName = this.data.inputName;
+    var bankName = this.data.bank[this.data.yhkindex];
+    if(this.data.current==0){
+      if (inputMoney == "") {
+        wx.showToast({
+          image: '/static/images/chahao2.png',
+          icon: 'none',
+          title: '请输入提现金额',
+          mask: true,
+          duration: 1500
+        })
 
-    } else if (inputMoney <= 0) {
-      // wx.showModal({
-      //   title: '提示',
-      //   content: '提现金额不能小于或等于0',
-      // })
-      wx.showToast({
-        image: '/static/images/chahao2.png',
-        title: '提现金额错误',
-        mask: true,
-        duration: 1500
-      })
+      } else if (inputMoney <= 0) {
 
-    }  else {
+        wx.showToast({
+          image: '/static/images/chahao2.png',
+          title: '提现金额错误',
+          mask: true,
+          duration: 1500
+        })
 
-      var token = app.globalData.token;
+      } else {
 
-      request({
-        url: "/api/user/balance_withdrawal",
-        header: {
-          'content-type': 'application/json', // 默认值
-          token: app.globalData.token,
-          storeId: app.globalData.storeId,
-        },
-        data: {
-          amount: inputMoney
-        }
-      }).then(res => {
-        //dosome
-        console.log(res);
+        var token = app.globalData.token;
 
-        if (res.data.error_code == 0) {
+        request({
+          url: "/api/user/balance_withdrawal",
+          header: {
+            'content-type': 'application/json', // 默认值
+            token: app.globalData.token,
+            storeId: app.globalData.storeId,
+          },
+          data: {
+            mode:1,
+            amount: inputMoney
+          }
+        }).then(res => {
+          //dosome
+          console.log(res);
 
-          wx.showToast({
+          if (res.data.error_code == 0) {
 
-            title: '提现请求已提交',
-            mask: true,
-            duration: 2000
-          })
-          setTimeout(function() {
-            wx.navigateBack({
-              delta: 1
-            });
-          }, 2000)
+            wx.showToast({
 
-          // wx.showModal({
-          //   title: '提示',
-          //   content: "提现请求已提交,请耐心等待!",
-          //   showCancel: false,
-          //   success(res) {
-          //     if (res.confirm) {
-          //       wx.navigateBack({
-          //         delta: 1
-          //       })
-          //     }
-          //   }
-          // })
+              title: '提现请求已提交',
+              mask: true,
+              duration: 2000
+            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              });
+            }, 2000)
+
+          } else {
+
+            wx.showToast({
+              icon: "none",
+              title: res.data.msg,
+              mask: true,
+              duration: 2000
+            })
+
+          }
+
+        })
+      }
+    }else{
+      if (inputMoney == "") {
+        wx.showToast({
+          image: '/static/images/chahao2.png',
+          icon: 'none',
+          title: '请输入提现金额',
+          mask: true,
+          duration: 1500
+        })
+
+      } else if (inputMoney <= 0) {
+
+        wx.showToast({
+          image: '/static/images/chahao2.png',
+          title: '提现金额错误',
+          mask: true,
+          duration: 1500
+        })
+
+      } else if (inputNumber == "") {
+        wx.showToast({
+          image: '/static/images/chahao2.png',
+          icon: 'none',
+          title: '请输入银行卡号',
+          mask: true,
+          duration: 1500
+        })
+
+      } else if (inputName == "") {
+        wx.showToast({
+          image: '/static/images/chahao2.png',
+          icon: 'none',
+          title: '请输入真实姓名',
+          mask: true,
+          duration: 1500
+        })
+
+      } else {
+
+        var token = app.globalData.token;
+
+        request({
+          url: "/api/user/balance_withdrawal",
+          header: {
+            'content-type': 'application/json', // 默认值
+            token: app.globalData.token,
+            storeId: app.globalData.storeId,
+          },
+          data: {
+            mode: 2,
+            bank_card_number: inputNumber,
+            real_name: inputName,
+            bank: bankName,
+            amount: inputMoney
+          }
+        }).then(res => {
+          //dosome
+          console.log(res);
+
+          if (res.data.error_code == 0) {
+
+            wx.showToast({
+
+              title: '提现请求已提交',
+              mask: true,
+              duration: 2000
+            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              });
+            }, 2000)
+
+          } else {
+
+            wx.showToast({
+              icon: "none",
+              title: res.data.msg,
+              mask: true,
+              duration: 2000
+            })
+
+          }
+
+        })
+      }
 
 
-
-        } else {
-
-          wx.showToast({
-            icon:"none",
-            title: res.data.msg,
-            mask: true,
-            duration: 2000
-          })
-          // wx.showModal({
-          //   title: '提示',
-          //   content: res.data.msg,
-          // })
-        }
-
-      })
     }
 
 

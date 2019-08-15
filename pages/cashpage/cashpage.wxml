@@ -7,7 +7,41 @@
 </view>
 
 
+<view class="zhyue">
+  <view>提现方式：</view>
+  <view>
+    <block wx:for="{{txtypes}}" wx:key="{{index}}">
+      <text class='{{current == index?"sel":""}}' bindtap='txsel' data-dex='{{index}}'>{{item}}</text>
+    </block>
+  </view>
+</view>
 
+
+<block wx:if="{{current == 1}}">
+
+
+    <picker range='{{bank}}' value='{{yhkindex}}' bindchange='selyhk'>
+    <view class='form-group'>
+      <view>选择银行：</view>
+      <view><input disabled name="yhnames" placeholder='请选择银行卡' value='{{bank[yhkindex]}}'></input></view>
+    </view>
+    </picker>
+
+
+  <view class='form-group'>
+    <view>银行卡号：</view>
+    <view>
+      <input type='digit' name="txmoney" placeholder='请输入银行卡号' value='{{inputNumber}}' bindinput='numberInput'></input>
+    </view>
+  </view>
+
+  <view class='form-group'>
+    <view>真实姓名：</view>
+    <view>
+      <input name="txmoney" placeholder='请输入真实姓名' value='{{inputName}}' bindinput='nameInput'></input>
+    </view>
+  </view>
+</block>
 
 <view class='form-group'>
   <view>提现金额：</view>
@@ -15,5 +49,8 @@
     <input type='digit' name="txmoney" placeholder='请输入提现金额' value='{{inputMoney}}' bindinput='moneyInput'></input>
   </view>
 </view>
-<view class='rate' wx:if='{{!inputMoney==""}}'>额外扣除{{rateMoney}}服务费 ,  (费率{{rate}}%) , 实际到账<text style='color:red'> {{realMoney}} </text>元</view>
+
+
+<view class='rate' wx:if='{{!inputMoney==""}}'>额外扣除{{rateMoney}}服务费 , (费率{{rate}}%) , 实际到账
+  <text style='color:red'> {{realMoney}} </text>元</view>
 <button bindtap='submit' hover-class='none'>提交</button>

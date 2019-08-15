@@ -249,3 +249,28 @@
 <view class="backindex" bindtap='backindex'>
   <image src="/static/images/backindex.png"></image>
 </view>
+
+
+
+<block wx:if="{{moneyFlag}}">
+  <view class='info_wrap'>
+    <view style='margin-left:30rpx;font-size:30rpx;margin-top:30rpx'>需支付金额 ： {{amount}}</view>
+
+
+      <radio-group class="radio-group" bindchange="radioChange" style='margin-top:30rpx;display:flex;justify-content:space-around;color:rgba(51,51,51,1);font-size:30rpx;'>
+        <label class="radio">
+          <radio value="common" name='pay' checked="{{true}}" />余额支付
+        </label>
+        <label class="radio">
+          <radio value="extension" name='pay' checked="{{false}}" />微信支付
+        </label>
+      </radio-group>
+
+    <view class='pay_wrap'>
+      <view class='pay' bindtap='payMoney1'>确定</view>
+      <view class='cancle' bindtap='cancleFlag'>取消</view>
+    </view>
+
+  </view>
+</block>
+<view class="zhezhao" wx:if="{{moneyFlag}}"></view>

@@ -10,12 +10,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    promotionDetailData: { buying_price:""},
+    promotionDetailData: {
+      buying_price: ""
+    },
     upload_domain: null,
     coupon_amount: null,
     code: null,
     touristCode: null,
     payMoney: null,
+    type: "common",
+    moneyFlag: false,
+    amount: 0,
+    order_no: ""
   },
 
   /**
@@ -140,22 +146,144 @@ Page({
 
 
   },
+  radioChange: function(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    this.setData({
+      type: e.detail.value
+    })
+  },
+
+  //取消不支付
+  cancleFlag() {
+    this.setData({
+      moneyFlag: false
+    })
+  },
+
+
+
+  payMoney1() {
+    var that = this;
+    //选择微信支付
+    that.setData({
+      moneyFlag: false
+    })
+    wx.showLoading({
+      title: "加载中",
+      mask: true
+      })
+    if (this.data.type == "extension") {
+      request({
+        url: "/api/tourist_coupon/receive_pay",
+        header: {
+          'content-type': 'application/json', // 默认值
+          token: app.globalData.token,
+        },
+        data: {
+          order_no: this.data.order_no,
+          pay_type: 1
+        }
+      }).then(res => {
+        console.log(res);
+        if (res.data.error_code == 0) {
+          wx.hideLoading();
+          wx.requestPayment({
+            timeStamp: res.data.data.wx_pay.timeStamp,
+            nonceStr: res.data.data.wx_pay.nonceStr,
+            package: res.data.data.wx_pay.package,
+            paySign: res.data.data.wx_pay.paySign,
+            signType: "MD5",
+            success(res) {
+
+              wx.showToast({
+                title: '抢购成功',
+                icon: 'success',
+                duration: 1500,
+                mask: true
+              })
+              setTimeout(function() {
+                wx.reLaunch({
+                  url: '../visitorindex/visitorindex'
+                })
+              }, 1500)
+
+            },
+            fail(res) {
+              wx.showToast({
+                title: '支付失败',
+              })
+            },
+
+          })
+
+        } else {
+
+          wx.hideLoading();
+
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+
+      })
+
+
+      //选择余额支付
+    } else if (this.data.type == "common") {
+      request({
+        url: "/api/tourist_coupon/receive_pay",
+        header: {
+          'content-type': 'application/json', // 默认值
+          token: app.globalData.token,
+
+        },
+        data: {
+          order_no: this.data.order_no,
+          pay_type: 0
+        }
+      }).then(res => {
+        console.log(res);
+        if (res.data.error_code == 0) {
+          wx.hideLoading();
+
+          wx.showToast({
+            title: '抢购成功',
+            icon: 'success',
+            duration: 1500,
+            mask: true
+          })
+          setTimeout(function() {
+            wx.reLaunch({
+              url: '../visitorindex/visitorindex'
+            })
+          }, 1500)
+
+        } else {
+          wx.hideLoading();
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+          })
+        }
+
+      })
+    }
+
+
+  },
+
 
   download(e) {
-    // var id = this.data.id;
-    // var couponId = this.data.couponId;
-    // var mold = this.data.mold;
 
+    var that = this;
     var touristCode = this.data.touristCode;
     var code = this.data.code;
     var token = app.globalData.token;
     var code = this.data.code;
 
-    if (touristCode == "") { //code 为空说明从商户端分享的 还没进行支付0.01元
-      wx.showLoading({
-        title: "加载中",
-        mask: true
-        })
+    if (touristCode == "") { //code 为空说明从商户端分享的 还没进行支付1元
+
       wx.request({
         url: baseURL + "/api/tourist_coupon/receive",
         header: {
@@ -167,62 +295,16 @@ Page({
         },
         method: "post",
         success(res) {
-            wx.hideLoading();
+          // wx.hideLoading();
           //dosome
           if (res.data.error_code == 0) {
 
-            if (res.data.data.pay == 1) {
-              wx.requestPayment({
-                timeStamp: res.data.data.wx_pay.timeStamp,
-                nonceStr: res.data.data.wx_pay.nonceStr,
-                package: res.data.data.wx_pay.package,
-                paySign: res.data.data.wx_pay.paySign,
-                signType: "MD5",
-                success(res) {
+            that.setData({
+              moneyFlag: true,
+              amount: res.data.data.amount,
+              order_no: res.data.data.order_no
+            })
 
-                  wx.showToast({
-                    title: '领取成功',
-                    icon: 'success',
-                    duration: 1500,
-                    mask: true
-                  })
-                  setTimeout(function () {
-                    wx.reLaunch({
-                      url: '../visitorindex/visitorindex'
-                    })
-                  }, 1500)
-                  
-                  // wx.showModal({
-                  //   title: '提示',
-                  //   content: '领取成功，请点击确定按钮返回个人中心首页',
-                  //   showCancel: false,
-                  //   success(res) {
-                  //     if (res.confirm) {
-                  //       wx.reLaunch({
-                  //         url: '../visitorindex/visitorindex',
-                  //       })
-                  //     }
-                  //   }
-                  // })
-
-                },
-                fail(res) {
-                  wx.hideLoading();
-                  wx.showToast({
-                    title: '支付失败!',
-                  })
-                },
-                complete(res) {
-                  console.log(res)
-                }
-              })
-
-
-            } else {
-              wx.showToast({
-                title: '取消支付',
-              })
-            }
 
           } else {
 
@@ -233,7 +315,7 @@ Page({
           }
         }
       })
-    } else { //touristCode 不为空说明从游客端赠送的  不需要支付0.01元下载了
+    } else { //touristCode 不为空说明从游客端赠送的  不需要支付1元了
 
       wx.showLoading({
         title: "加载中",
@@ -265,18 +347,6 @@ Page({
               })
             }, 1500)
 
-            // wx.showModal({
-            //   title: '提示',
-            //   content: '领取成功，请点击确定按钮返回个人中心首页',
-            //   showCancel: false,
-            //   success(res) {
-            //     if (res.confirm) {
-            //       wx.reLaunch({
-            //         url: '../visitorindex/visitorindex',
-            //       })
-            //     }
-            //   }
-            // })
 
           } else {
             wx.showModal({

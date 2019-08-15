@@ -238,8 +238,8 @@ Page({
       data: {
         page: proPage,
         list_rows: proLimit,
-        longitude: longitude,
-        latitude: latitude,
+        longitude: app.globalData.longitude,
+        latitude: app.globalData.latitude,
         store_id: pageId,
         type:2
       },
@@ -265,8 +265,8 @@ Page({
       data: {
         page: buyPage,
         list_rows: buyLimit,
-        longitude: longitude,
-        latitude: latitude,
+        longitude: app.globalData.longitude,
+        latitude: app.globalData.latitude,
         store_id: pageId,
         type: 1
       },
