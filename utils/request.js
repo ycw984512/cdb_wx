@@ -1,6 +1,6 @@
-const baseURL = "https://www.zbcdb.com"
+// const baseURL = "https://www.zbcdb.com"
 
-// const baseURL = "https://cdb.0797i.cn"
+const baseURL = "https://cdb.0797i.cn"
 const request = (options) => {
   return new Promise((resolve, reject) => {
     wx.request({

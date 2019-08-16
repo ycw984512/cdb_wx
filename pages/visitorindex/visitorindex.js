@@ -814,7 +814,7 @@ Page({
       if (res.data.error_code == 0) {
 
           that.setData({
-            moneyFlag: true,
+            moneyFlag1: true,
             amount: res.data.data.amount,
             order_no: res.data.data.order_no
           })

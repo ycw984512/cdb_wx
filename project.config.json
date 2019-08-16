@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.2",
-	"appid": "wx3fac71d9db607b78",
+	"appid": "wx53b25c530950cbaf",
 	"projectname": "chongdianbao_wxapp",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -61,7 +61,7 @@
 					"id": 1,
 					"name": "抢购券分享",
 					"pathName": "pages/loadingIndex/loadingIndex",
-					"query": "type=2&code=7xqpn7KF2DaJsRkEI3TM",
+					"query": "type=2&code=MKjVrG3yoKI3Z3PlZZPB",
 					"scene": null
 				},
 				{
