@@ -308,5 +308,18 @@ Page({
         console.log(res)
       }
     })
+  },
+  // 继续分享
+  onShareAppMessage() {
+    var id = this.data.pageId;
+    var name = this.data.name;
+    return {
+      title: name,
+      path: '/pages/loadingIndex/loadingIndex?&storeId=' + id + '&type=5',
+      success(res) {
+        console.log(res)
+      }
+    }
+
   }
 })

@@ -20,31 +20,49 @@
 <block wx:if="{{current == 1}}">
 
 
-    <picker range='{{bank}}' value='{{yhkindex}}' bindchange='selyhk'>
+  <!-- <picker range='{{bank}}' value='{{yhkindex}}' bindchange='selyhk'>
     <view class='form-group'>
       <view>选择银行：</view>
       <view><input disabled name="yhnames" placeholder='请选择银行卡' value='{{bank[yhkindex]}}'></input></view>
     </view>
-    </picker>
+    </picker> -->
+
+
+
+  <view class='form-group'>
+    <view>手机号码：</view>
+    <view>
+      <input type='digit' name="txmoney" placeholder='请输入手机号码' value='{{phone}}' bindinput='phoneNumber'></input>
+    </view>
+  </view>
 
 
   <view class='form-group'>
     <view>银行卡号：</view>
     <view>
-      <input type='digit' name="txmoney" placeholder='请输入银行卡号' value='{{inputNumber}}' bindinput='numberInput'></input>
+      <input type='digit' name="txmoney" placeholder='请输入银行卡号'    bindblur="changeBank" value='{{inputNumber}}' bindinput='numberInput'></input>
     </view>
   </view>
 
   <view class='form-group'>
     <view>真实姓名：</view>
     <view>
-      <input name="txmoney" placeholder='请输入真实姓名' value='{{inputName}}' bindinput='nameInput'></input>
+      <input name="txmoney" placeholder='请输入真实姓名' bindblur="changeBank" value='{{inputName}}' bindinput='nameInput'></input>
     </view>
   </view>
+
+  <view class='form-group'>
+  <view style='text-align:center'>提现银行 : </view>
+  <view>
+    <input type='digit' disabled='disabled' name="txmoney" placeholder='输入卡号姓名自动获取' value='{{bank}}'></input>
+  </view>
+</view>
 </block>
 
+
+
 <view class='form-group'>
-  <view>提现金额：</view>
+  <view style='text-align:center'>提现金额：</view>
   <view>
     <input type='digit' name="txmoney" placeholder='请输入提现金额' value='{{inputMoney}}' bindinput='moneyInput'></input>
   </view>

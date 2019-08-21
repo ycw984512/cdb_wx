@@ -1,6 +1,7 @@
 // pages/orderList/orderList.js
 import {
-  request, baseURL
+  request,
+  baseURL
 } from "../../utils/request.js";
 var app = getApp();
 Page({
@@ -35,7 +36,7 @@ Page({
     shareNumberId: undefined,
     shareNumFlag: true,
     shareNumberValue: 1,
-    shareCoupon_id:null,
+    shareCoupon_id: null,
     shareFlag: true,
     code: null,
     store_name: undefined
@@ -164,7 +165,8 @@ Page({
       },
       header: {
         'content-type': 'application/json', // 默认值
-        token: token, storeId: app.globalData.storeId,
+        token: token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
       //dosome
@@ -200,7 +202,8 @@ Page({
       },
       header: {
         'content-type': 'application/json', // 默认值
-        token: token, storeId: app.globalData.storeId,
+        token: token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
       //dosome
@@ -236,7 +239,8 @@ Page({
       },
       header: {
         'content-type': 'application/json', // 默认值
-        token: token, storeId: app.globalData.storeId,
+        token: token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
       //dosome
@@ -271,7 +275,8 @@ Page({
       },
       header: {
         'content-type': 'application/json', // 默认值
-        token: token, storeId: app.globalData.storeId,
+        token: token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
       //dosome
@@ -318,7 +323,7 @@ Page({
     var id = e.currentTarget.dataset.id;
     var coupon_id = e.currentTarget.dataset.coupon_id;
     wx.navigateTo({
-      url: '../mybuydetail/mybuydetail?type=1&coupon_id='+coupon_id+'&id=' + id,
+      url: '../mybuydetail/mybuydetail?type=1&coupon_id=' + coupon_id + '&id=' + id,
 
     })
   },
@@ -332,10 +337,13 @@ Page({
     var id = e.currentTarget.dataset.id;
     request({
       url: "/api/coupon/delete_download_coupon",
-      data: { id: id},
+      data: {
+        id: id
+      },
       header: {
         'content-type': 'application/json', // 默认值
-        token: app.globalData.token, storeId: app.globalData.storeId,
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
       if (res.data.error_code == 0) {
@@ -350,7 +358,12 @@ Page({
         })
         this.loadTab1list();
 
-       } else { wx.showModal({ title: '提示', content: res.data.msg, }) }
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+        })
+      }
 
     })
 
@@ -360,7 +373,7 @@ Page({
     var id = e.currentTarget.dataset.id;
     var coupon_id = e.currentTarget.dataset.coupon_id;
     wx.navigateTo({
-      url: '../mypromotiondetail/mypromotiondetail?type=1&coupon_id=' + coupon_id +'&id=' + id,
+      url: '../mypromotiondetail/mypromotiondetail?type=1&coupon_id=' + coupon_id + '&id=' + id,
 
     })
 
@@ -371,13 +384,16 @@ Page({
     var id = e.currentTarget.dataset.id;
     request({
       url: "/api/coupon/delete_download_coupon",
-      data: { id: id},
+      data: {
+        id: id
+      },
       header: {
         'content-type': 'application/json', // 默认值
-        token: app.globalData.token, storeId: app.globalData.storeId,
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
-      if (res.data.error_code == 0) { 
+      if (res.data.error_code == 0) {
         wx.showToast({
           title: '删除卡券成功',
           icon: 'success',
@@ -388,32 +404,40 @@ Page({
           tab2Data: [],
         })
         this.loadTab2list();
-      } else { wx.showModal({ title: '提示', content: res.data.msg, }) }
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+        })
+      }
 
     })
   },
-//过期的促销券查看明细
-  lookOldPro(e){
+  //过期的促销券查看明细
+  lookOldPro(e) {
     var id = e.currentTarget.dataset.id;
     var coupon_id = e.currentTarget.dataset.coupon_id;
     wx.navigateTo({
-      url: '../mypromotiondetail/mypromotiondetail?type=1&coupon_id=' + coupon_id +'&id=' + id,
+      url: '../mypromotiondetail/mypromotiondetail?type=1&coupon_id=' + coupon_id + '&id=' + id,
 
     })
   },
-//过期的促销券删除卡券
+  //过期的促销券删除卡券
   deleteOldPro(e) {
     var token = app.globalData.token;
     var id = e.currentTarget.dataset.id;
     request({
       url: "/api/coupon/delete_download_coupon",
-      data: { id: id},
+      data: {
+        id: id
+      },
       header: {
         'content-type': 'application/json', // 默认值
-        token: app.globalData.token, storeId: app.globalData.storeId,
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
-      if (res.data.error_code == 0) { 
+      if (res.data.error_code == 0) {
         wx.showToast({
           title: '删除卡券成功',
           icon: 'success',
@@ -425,7 +449,12 @@ Page({
         })
         this.loadTab3list();
 
-      } else { wx.showModal({ title: '提示', content: res.data.msg, }) }
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+        })
+      }
 
     })
   },
@@ -434,7 +463,7 @@ Page({
     var id = e.currentTarget.dataset.id;
     var coupon_id = e.currentTarget.dataset.coupon_id;
     wx.navigateTo({
-      url: '../mybuydetail/mybuydetail?type=1&coupon_id=' + coupon_id +'&id=' + id,
+      url: '../mybuydetail/mybuydetail?type=1&coupon_id=' + coupon_id + '&id=' + id,
 
     })
   },
@@ -444,13 +473,16 @@ Page({
     var id = e.currentTarget.dataset.id;
     request({
       url: "/api/coupon/delete_download_coupon",
-      data: { id: id},
+      data: {
+        id: id
+      },
       header: {
         'content-type': 'application/json', // 默认值
-        token: app.globalData.token, storeId: app.globalData.storeId,
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
-      if (res.data.error_code == 0) { 
+      if (res.data.error_code == 0) {
         wx.showToast({
           title: '删除卡券成功',
           icon: 'success',
@@ -462,15 +494,20 @@ Page({
         })
         this.loadTab4list();
 
-      } else { wx.showModal({ title: '提示', content: res.data.msg, }) }
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+        })
+      }
 
     })
   },
-//跳转促销券详情页面
-  goProDetail(e){
+  //跳转促销券详情页面
+  goProDetail(e) {
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../promotiondetail/promotiondetail?isHidden=1&id='+id,
+      url: '../promotiondetail/promotiondetail?isHidden=1&id=' + id,
     })
   },
   //跳转抢购券详情页面
@@ -479,8 +516,7 @@ Page({
     wx.navigateTo({
       url: '../buydetail/buydetail?isHidden=1&id=' + id,
     })
-  }
-,
+  },
 
   //分享卡券
 
@@ -522,10 +558,11 @@ Page({
       },
       header: {
         'content-type': 'application/json', // 默认值
-        token: app.globalData.token, storeId: app.globalData.storeId,
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
       },
     }).then(res => {
-      if (res.data.error_code == 0) { 
+      if (res.data.error_code == 0) {
         var code = res.data.data.code;
         console.log(code);
         this.setData({
@@ -534,17 +571,56 @@ Page({
           code: code
         })
 
-      } else { wx.showModal({ title: '提示', content: res.data.msg, }) }
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+        })
+      }
 
     })
   },
 
   sharequxiao() {
-    this.setData({
-      shareFlag: true,
+
+    // this.setData({
+    //   shareFlag: true,
+    // })
+    var code = this.data.code; //code
+    request({
+      url: "/api/coupon/release_share_coupon",
+      data: {
+        code: code,
+      },
+      header: {
+        'content-type': 'application/json', // 默认值
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
+      },
+    }).then(res => {
+
+      if (res.data.error_code == 0) {
+
+        this.setData({
+          shareFlag: true,
+        })
+
+        wx.showToast({
+          title: '取消成功',
+        })
+      } else {
+        this.setData({
+          shareFlag: true,
+        })
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+        })
+      }
+
     })
-  }
-  ,
+
+  },
   onShareAppMessage(e) {
     this.setData({
       shareFlag: true,
@@ -555,12 +631,12 @@ Page({
       var code = this.data.code;
       var id = this.data.shareCoupon_id;
       var store_name = this.data.store_name;
-      console.log(baseURL+'/api/share_img/coupon?id='+id);
+      console.log(baseURL + '/api/share_img/coupon?id=' + id);
       console.log(code)
       return {
         title: store_name,
         path: '/pages/loadingIndex/loadingIndex?code=' + code + '&type=2',
-        imageUrl: baseURL+'/api/share_img/coupon?id='+id,
+        imageUrl: baseURL + '/api/share_img/coupon?id=' + id,
         success(res) {
           console.log(res)
         }

@@ -15,10 +15,12 @@ Page({
     rate: "",
     txtypes: ["微信", "银行卡"],
     current: 0,
-    inputNumber:'',
-    inputName:'',
-    bank: ["中国农业银行", "中国工商银行", "中国建设银行", "中国银行", "中国交通银行","兴业银行",],
-    yhkindex:0
+    inputNumber: '',
+    inputName: '',
+    phone: "",
+    // bank: ["中国农业银行", "中国工商银行", "中国建设银行", "中国银行", "中国交通银行", "兴业银行", ],
+    bank: "",
+    yhkindex: 0
   },
 
 
@@ -47,6 +49,26 @@ Page({
       })
     })
 
+
+    request({
+      url: "/api/user/get_bank_card_info",
+      header: {
+        'content-type': 'application/json', // 默认值
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
+      },
+    }).then(res => {
+      //dosome
+      console.log(res);
+      this.setData({
+        inputNumber: res.data.data.bank_card_number,
+        inputName: res.data.data.real_name,
+        bank: res.data.data.bank,
+        phone: res.data.data.phone,
+      })
+    })
+
+
   },
   txsel(e) {
     this.setData({
@@ -72,10 +94,16 @@ Page({
     })
   },
 
-  numberInput(e){
-      this.setData({
-        inputNumber:e.detail.value
-      })
+  phoneNumber(e) {
+    this.setData({
+      phone: e.detail.value
+    })
+  },
+
+  numberInput(e) {
+    this.setData({
+      inputNumber: e.detail.value
+    })
   },
   nameInput(e) {
     this.setData({
@@ -95,12 +123,99 @@ Page({
 
     })
   },
+
+  changeBank() {
+    var inputName = this.data.inputName; //姓名
+    var inputNumber = this.data.inputNumber; //卡号
+    if (inputNumber == "") {
+      wx.showToast({
+    
+        icon: 'none',
+        title: '请输入银行卡号',
+        mask: true,
+        duration: 1500
+      })
+
+    } else if (inputNumber.length < 16 || inputNumber.length > 19) {
+      wx.showToast({
+
+        icon: 'none',
+        title: '请输入正确的银行卡号',
+        mask: true,
+        duration: 1500
+      })
+
+    } else if (inputName =="") {
+
+      wx.showToast({
+
+        title: '请输入姓名',
+        mask: true,
+        duration: 1500
+      })
+
+    } 
+    else if (!(/^(([a-zA-Z+\.?\·?a-zA-Z+]{2,30}$)|([\u4e00-\u9fa5+\·?\u4e00-\u9fa5+]{2,30}$))/.test(inputName))) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入正确的姓名',
+        mask: true,
+        duration: 1500
+      })
+
+    }
+    else {
+      request({
+        url: "/api/user/bank_real_check",
+        header: {
+          'content-type': 'application/json', // 默认值
+          token: app.globalData.token,
+          storeId: app.globalData.storeId,
+        },
+        data: {
+          real_name: inputName,
+          bank_card_number: inputNumber,
+
+        }
+      }).then(res => {
+        //dosome
+        console.log(res);
+
+        if (res.data.error_code == 0) {
+
+              this.setData({
+                bank:res.data.data.bank
+              })
+
+        } else {
+
+          wx.showToast({
+            icon: "none",
+            title: res.data.msg,
+            mask: true,
+            duration: 2000
+          })
+
+        }
+
+      })
+
+
+
+    }
+
+
+  },
   submit() {
+
+    console.log(this.data.bank)
     var inputMoney = this.data.inputMoney;
     var inputNumber = this.data.inputNumber;
     var inputName = this.data.inputName;
-    var bankName = this.data.bank[this.data.yhkindex];
-    if(this.data.current==0){
+    var phone = this.data.phone;
+    var bank = this.data.bank;
+    // var bankName = this.data.bank[this.data.yhkindex];
+    if (this.data.current == 0) {
       if (inputMoney == "") {
         wx.showToast({
           image: '/static/images/chahao2.png',
@@ -131,7 +246,7 @@ Page({
             storeId: app.globalData.storeId,
           },
           data: {
-            mode:1,
+            mode: 1,
             amount: inputMoney
           }
         }).then(res => {
@@ -146,7 +261,7 @@ Page({
               mask: true,
               duration: 2000
             })
-            setTimeout(function () {
+            setTimeout(function() {
               wx.navigateBack({
                 delta: 1
               });
@@ -165,7 +280,7 @@ Page({
 
         })
       }
-    }else{
+    } else {
       if (inputMoney == "") {
         wx.showToast({
           image: '/static/images/chahao2.png',
@@ -183,6 +298,24 @@ Page({
           mask: true,
           duration: 1500
         })
+       
+      } else if (phone == "") {
+        wx.showToast({
+          image: '/static/images/chahao2.png',
+          icon: 'none',
+          title: '请输入手机号码',
+          mask: true,
+          duration: 1500
+        })
+
+      } else if (!(/^1[3456789]\d{9}$/.test(phone))) {
+        wx.showToast({
+
+          icon: 'none',
+          title: '请输入正确的手机号码',
+          mask: true,
+          duration: 1500
+        })
 
       } else if (inputNumber == "") {
         wx.showToast({
@@ -193,6 +326,15 @@ Page({
           duration: 1500
         })
 
+      } else if (inputNumber.length < 16 || inputNumber.length>19) {
+        wx.showToast({
+
+          icon: 'none',
+          title: '请输入正确的银行卡号',
+          mask: true,
+          duration: 1500
+        })
+         
       } else if (inputName == "") {
         wx.showToast({
           image: '/static/images/chahao2.png',
@@ -202,7 +344,17 @@ Page({
           duration: 1500
         })
 
-      } else {
+      }
+       else if (!(/^(([a-zA-Z+\.?\·?a-zA-Z+]{2,30}$)|([\u4e00-\u9fa5+\·?\u4e00-\u9fa5+]{2,30}$))/.test(inputName))){
+        wx.showToast({
+          icon: 'none',
+          title: '请输入正确的姓名',
+          mask: true,
+          duration: 1500
+        })
+
+      }
+      else {
 
         var token = app.globalData.token;
 
@@ -218,7 +370,8 @@ Page({
             bank_card_number: inputNumber,
             real_name: inputName,
             bank: bankName,
-            amount: inputMoney
+            amount: inputMoney,
+            phone: phone
           }
         }).then(res => {
           //dosome
@@ -232,7 +385,7 @@ Page({
               mask: true,
               duration: 2000
             })
-            setTimeout(function () {
+            setTimeout(function() {
               wx.navigateBack({
                 delta: 1
               });

@@ -7,7 +7,7 @@
     <image style='width:100%;height:100%' src='/static/images/buylist.png'></image>
     <view class='top_left'>
       <view class='top_left_img'>
-        <image wx:if='{{upload_domain&&promotionDetailData.logo}}' src='{{upload_domain}}{{promotionDetailData.logo}}'></image>
+        <image wx:if='{{upload_domain&&promotionDetailData.logo}}' src='{{upload_domain}}{{promotionDetailData.logo}}' bindtap='clickImg'></image>
       </view>
       <view class='top_left_name'>
         <view class='top_left_name_goods'>{{promotionDetailData.name}}</view>

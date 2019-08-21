@@ -435,7 +435,9 @@
 
   <input bindinput='listerShareNumber' bindconfirm="shareNumberqueren" value='{{shareNumberValue}}' type='number' placeholder='请输入需要分享优惠券的数量' style='border:1px solid #999;padding:20rpx 20rpx;' placeholder-class='holder'></input>
 
-  <view style='color:red;font-weight:700;font-size:30rpx;margin-bottom:20rpx;margin-top:20rpx;padding:0 20rpx;'>如不需要分享请点击取消，分享后24小时以后未被领取卡券退还!</view>
+  <view style='color:red;font-weight:700;font-size:30rpx;margin-bottom:20rpx;margin-top:20rpx;padding:0 20rpx;'>如不需要分享请点击取消，
+  <!-- 分享后24小时以后未被领取卡券退还! -->
+  </view>
 
   <view style='display:flex;justify-content:space-around'>
     <view bindtap="shareNumberquxiao" class="quxiao">取消</view>
@@ -451,7 +453,9 @@
 
   <view style='margin:30rpx;'>已创建
     <text style='color:red;font-weight:700'>{{shareNumberValue}}</text> 张卡券</view>
-  <view style='color:red;font-weight:700;font-size:30rpx;margin-bottom:20rpx;margin-left:30rpx'>卡券已创建，分享后24小时以后未被领取卡券退还!</view>
+  <view style='color:red;font-weight:700;font-size:30rpx;margin-bottom:20rpx;margin-left:30rpx'>卡券已创建，如不需要分享请点击取消，
+  <!-- 分享后24小时以后未被领取卡券退还! -->
+  </view>
 
   <view style='display:flex;justify-content:space-around;margin-bottom:20rpx;'>
     <view bindtap="sharequxiao" class="quxiao">取消</view>

@@ -72,6 +72,16 @@ Page({
  
 
   },
+  clickImg(e) {
+    var imgUrl = this.data.upload_domain + "" + this.data.promotionDetailData.logo;
+    wx.previewImage({
+      urls: [imgUrl], //需要预览的图片http链接列表，注意是数组
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+
+    })
+  },
   download(e) {
     var id = e.currentTarget.dataset.id;
     this.setData({

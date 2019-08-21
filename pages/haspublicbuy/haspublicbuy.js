@@ -530,9 +530,43 @@ Page({
   },
 
   sharequxiao() {
-    this.setData({
-      shareFlag: true,
+    // this.setData({
+    //   shareFlag: true,
+    // })
+    var code = this.data.code; //code
+    request({
+      url: "/api/coupon/release_share_coupon",
+      data: {
+        code: code,
+      },
+      header: {
+        'content-type': 'application/json', // 默认值
+        token: app.globalData.token,
+        storeId: app.globalData.storeId,
+      },
+    }).then(res => {
+
+      if (res.data.error_code == 0) {
+
+        this.setData({
+          shareFlag: true,
+        })
+
+        wx.showToast({
+          title: '取消成功',
+        })
+      } else {
+        this.setData({
+          shareFlag: true,
+        })
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+        })
+      }
+
     })
+
   },
   onShareAppMessage(e) {
     this.setData({
