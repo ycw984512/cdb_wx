@@ -36,7 +36,8 @@ Page({
     addNumFlag: true,
     coupon_release_integral:null,
     caleValue:0,
-    textFlag:true
+    textFlag:true,
+    prepaid_price:""
 
   },
 
@@ -140,6 +141,12 @@ Page({
       caleValue: caleValue
     })
   },
+  prepaid_priceTap(e) {
+    this.setData({
+      prepaid_price: e.detail.value
+    })
+  },
+
   originPriceTap(e) {
     this.setData({
       couponPrice: e.detail.value
@@ -193,6 +200,7 @@ Page({
     var name = this.data.couponName;
     var original_price = this.data.couponPrice;
     var buying_price = this.data.couponBuyPrice;
+    var prepaid_price = this.data.prepaid_price;
     var rebate_commission = this.data.couponRate;
     var pattern = this.data.type == "extension" ? 2 : 1;
     var instructions = this.data.template_id;
@@ -223,7 +231,22 @@ Page({
 
       })
 
-    } else if (original_price <= 0) {
+    } else if (prepaid_price == "") {
+      wx.showModal({
+        title: '提示',
+        content: '抢购券预付款不能为空',
+        showCancel: false,
+
+      })
+
+    } else if (prepaid_price <= 0) {
+      wx.showModal({
+        title: '提示',
+        content: '抢购券预付款不能小于或等于0',
+        showCancel: false,
+
+      })
+    }else if (original_price <= 0) {
       wx.showModal({
         title: '提示',
         content: '原价不能小于或等于0',
@@ -287,6 +310,8 @@ Page({
       })
 
     } else if (pattern == 2) {
+
+      //推广模式
       if (promotion_commission == "") {
         wx.showModal({
           title: '提示',
@@ -317,7 +342,8 @@ Page({
             promotion_commission: promotion_commission,
             type: type,
             instructions: instructions,
-            pattern: pattern
+            pattern: pattern,
+            prepaid_price: prepaid_price
           },
           header: {
             'content-type': 'application/json', // 默认值
@@ -350,7 +376,9 @@ Page({
 
         })
       }
-    } else {
+    }
+    
+     else {
       request({
         url: "/api/coupon/add_coupon",
         data: {
@@ -364,7 +392,8 @@ Page({
           promotion_commission: promotion_commission,
           type: type,
           instructions: instructions,
-          pattern: pattern
+          pattern: pattern,
+          prepaid_price: prepaid_price
         },
         header: {
           'content-type': 'application/json', // 默认值

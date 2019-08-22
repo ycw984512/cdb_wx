@@ -15,6 +15,11 @@
 </view>
 
 <view class='coupon_name'>
+  <view>抢购券预付款 (元) : </view>
+  <input placeholder='请输入抢购券预付款金额' type='digit' placeholder-class='holderClass' value='{{prepaid_price}}' bindinput='prepaid_priceTap'></input>
+</view>
+
+<view class='coupon_name'>
   <view>有效日期</view>
   <view style='display:flex;justify-content:space-around;flex:1;'>
 
@@ -55,15 +60,16 @@
 </view>
 
 <view class='coupon_name' wx:if="{{type=='extension'}}">
-  <view>推广返佣（%） : </view>
+  <!-- <view>推广返佣（%） : </view> -->
+    <view>推广金额 : </view>
   <input placeholder='一经发布，无法修改' value='{{extensionRate}}' type='number' placeholder-class='holderClass' bindinput='extensionRateTap'></input>
 </view>
 
 <view style='font-size:24rpx;color:#999;margin:10rpx 0 30rpx 20rpx;' wx:if="{{type!=='extension'}}">备注：礼包赠送时返利给推荐人的礼包金额比例!</view>
 
-<view style='font-size:24rpx;color:#999;margin:10rpx 0 30rpx 20rpx;' wx:if="{{type=='extension'}}">备注：平台收取1元，给到推荐人：{{m3.getNum(caleValue)}} 元</view>
+<!-- <view style='font-size:24rpx;color:#999;margin:10rpx 0 30rpx 20rpx;' wx:if="{{type=='extension'}}">备注：平台收取1元，给到推荐人：{{m3.getNum(caleValue)}} 元</view> -->
 
-<view class='coupon_name2' >
+<view class='coupon_name2'>
   <view style='font-size:24rpx;'>使用须知：
     <text style='font-size:24rpx;color:#4768F3;' bindtap='goTemplate'>选择模板</text> </view>
   <view style='font-size:24rpx;color:red;' bindtap='showXieYi'>《创建说明》</view>

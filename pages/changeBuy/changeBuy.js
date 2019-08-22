@@ -24,7 +24,8 @@ Page({
     upload_domain: null,
     id: null,
     caleValue: 0,
-    textFlag: true
+    textFlag: true,
+    prepaid_price:""
   },
 
   /**
@@ -71,6 +72,7 @@ Page({
         template_id: res.data.data.instructions,
         couponRate: res.data.data.rebate_commission,
         couponBuyPrice: res.data.data.buying_price,
+        prepaid_price: res.data.data.prepaid_price,
         extensionRate: res.data.data.promotion_commission,
         type: res.data.data.pattern == 1 ? "common" :"extension",
         items:items
@@ -156,6 +158,13 @@ Page({
     })
   }
   ,
+  prepaid_priceTap(e) {
+    this.setData({
+    prepaid_price: e.detail.value
+    })
+  }
+  ,
+  
   rateTap(e) {
     this.setData({
       couponRate: e.detail.value
@@ -185,6 +194,7 @@ Page({
     var name = this.data.couponName;
     var original_price = this.data.couponPrice;
     var buying_price = this.data.couponBuyPrice;
+    var prepaid_price = this.data.prepaid_price;
     var rebate_commission = this.data.couponRate;
     var pattern = this.data.type == "extension" ? 2 : 1;
     var instructions = this.data.template_id;
@@ -194,6 +204,8 @@ Page({
     if (name == "") { wx.showModal({ title: '提示', content: '卡券名称不能为空', }) }
     else if (original_price == "") { wx.showModal({ title: '提示', content: '原价不能为空', }) }
     else if (buying_price == "") { wx.showModal({ title: '提示', content: '抢购价不能为空', }) }
+    else if (prepaid_price == "") { wx.showModal({ title: '提示', content: '抢购券预付款不能为空', }) }
+    else if (prepaid_price <= 0) { wx.showModal({ title: '提示', content: '抢购券预付款不能小于或等于0', }) }
     else if (original_price <= 0) { wx.showModal({ title: '提示', content: '原价不能小于或等于0', }) }
     else if (buying_price <= 0) { wx.showModal({ title: '提示', content: '抢购价不能小于或等于0', }) }
     else if (start_time == "") { wx.showModal({ title: '提示', content: '开始日期不能为空', }) }
@@ -228,7 +240,8 @@ Page({
             type: type,
             instructions: instructions,
             pattern: pattern,
-            id: id
+            id: id,
+            prepaid_price: prepaid_price
           },
           header: {
             'content-type': 'application/json', // 默认值
@@ -273,7 +286,8 @@ Page({
           type: type,
           instructions: instructions,
           pattern: pattern,
-          id: id
+          id: id,
+          prepaid_price: prepaid_price
         },
         header: {
           'content-type': 'application/json', // 默认值
